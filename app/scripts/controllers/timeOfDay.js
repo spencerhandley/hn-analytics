@@ -1,0 +1,23 @@
+'use strict';
+
+/**
+ * @ngdoc function
+ * @name hnlyticsApp.controller:AboutCtrl
+ * @description
+ * # AboutCtrl
+ * Controller of the hnlyticsApp
+ */
+angular.module('hnlyticsApp')
+  .controller('TimeOfDayCtrl', function ($scope, timeOfDayChart, subsByPeriodService, chartsService, subsByPeriod) {
+  	$scope.chart = timeOfDayChart;
+  	$scope.subsByPeriod = subsByPeriod;
+  	$scope.$on('New User Data', function(event, data){
+  		subsByPeriodService.getSubsByPeriod().then(function(data){
+  			$scope.subsByPeriod = data
+  		})
+		chartsService.timeOfDay().then(function(data){
+			$scope.chart = data
+		})
+  		console.log('==================DATA', data)
+  	})
+  });

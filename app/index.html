@@ -1,0 +1,133 @@
+<!doctype html>
+<html class="no-js">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width">
+    <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
+    <!-- build:css(.) styles/vendor.css -->
+    <!-- bower:css -->
+    <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css" />
+    <!-- endbower -->
+    <!-- endbuild -->
+    <!-- build:css(.tmp) styles/main.css -->
+    <link rel="stylesheet" href="styles/main.css">
+    <!-- endbuild -->
+  </head>
+  <body ng-app="hnlyticsApp">
+  <div ng-controller="MainCtrl">
+    <!--[if lt IE 7]>
+      <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+    <![endif]-->
+
+    <!-- Add your site or application content here -->
+      <!-- <div class="header"> -->
+<!--         <ul class="nav nav-pills pull-right">
+          <li class="active"><a ng-href="#">Home</a></li>
+          <li><a ng-href="#/about">About</a></li>
+          <li><a ng-href="#">Contact</a></li>
+        </ul> -->
+        <img src="/images/logo.png" class="pull-left logo">
+        <h3 class="title">HN ANALYTICS</h3>
+        <form ng-submit="pullUserData(inputUser.toLowerCase())">
+          <input type="text" ng-model="inputUser" class="un-input" placeholder="Search Username" ></input>
+        </form>
+      <!-- </div> -->
+
+      <div class="left-panel col-sm-2" >
+        <ul class="nav nav-stacked row " left-nav  >
+          <li class="row" style="display:hidden;"></li>
+          <li class="row nav-item " ng-click="setCurrent(1)" ng-class="{ selected: current === 1 }" ><a href="#/">TIME OF DAY<span class="glyphicon glyphicon-time pull-right"></span></a></li>
+          <li class="row nav-item" ng-class="{ selected: current === 2 }"><a href="#/latest" ng-click="setCurrent(2)">LATEST POST<span class="glyphicon glyphicon-stats pull-right"></span></a></li>
+          <li class="row nav-item" ng-class="{ selected: current === 3 }" ><a href="#/toppost" ng-click="setCurrent(3)">TOP POST<span class="glyphicon glyphicon-tasks pull-right"></span></a></li>
+          
+          <li class="row nav-item" ng-class="{ selected: current === 5 }" ><a href="#/polls" ng-click="setCurrent(5)">WORD FREQUENCY<span class="glyphicon glyphicon-align-left pull-right"></span></a></li>
+          <!-- <li class="row nav-item" ng-class="{ selected: current === 6 }"><a href="#/comments" ng-click="setCurrent(6)">COMMENT<span class="glyphicon glyphicon-pencil pull-right"></span></a></li> -->
+        </ul>
+      </div>
+      <div ng-view="" class="col-sm-8"></div>
+      <div class="col-sm-2">
+        <div class="sidebar">
+          <h4 class="details-header">{{user.toUpperCase()}}'S DETAILS</h4> 
+
+          <canvas doughnutchart options="myChartOptions" class="userdgnt center" data="dgntData" width="160" height="160"></canvas>
+          <p class="center pie-label">Post Types</p>
+          <p class="user-details">Member Since: <p class=" detail-p">{{userStats.createdAt}}</p></p>
+          <p class="user-details">Karma: <p class=" detail-p">{{userStats.karma}}</p></p>
+          <p class="user-details">Submissions: <p class=" detail-p">{{userStats.submitted.length}}</p></p>
+          <p class="user-details">About: <p class=" detail-p">{{userStats.about}}</p></p>
+          <p class="user-details">Latest Post: <a href="{{lastPost.url}}"><p class=" detail-p">{{userStats.lastPost.title}}</p></a></p>
+
+        </div>
+      </div>
+    </div>
+    
+
+
+    <!-- Google Analytics: change UA-XXXXX-X to be your site's ID -->
+     <script>
+       (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+       (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+       m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+       })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+       ga('create', 'UA-XXXXX-X');
+       ga('send', 'pageview');
+    </script>
+
+    <!-- build:js(.) scripts/oldieshim.js -->
+    <!--[if lt IE 9]>
+    <script src="bower_components/es5-shim/es5-shim.js"></script>
+    <script src="bower_components/json3/lib/json3.min.js"></script>
+    <![endif]-->
+    <!-- endbuild -->
+
+    <script src="bower_components/underscore/underscore.js"></script>
+
+    <!-- build:js(.) scripts/vendor.js -->
+    <!-- bower:js -->
+    <script src="bower_components/jquery/dist/jquery.js"></script>
+    <script src="bower_components/angular/angular.js"></script>
+    <script src="bower_components/json3/lib/json3.js"></script>
+    <script src="bower_components/bootstrap/dist/js/bootstrap.js"></script>
+    <script src="bower_components/angular-resource/angular-resource.js"></script>
+    <script src="bower_components/angular-cookies/angular-cookies.js"></script>
+    <script src="bower_components/angular-sanitize/angular-sanitize.js"></script>
+    <script src="bower_components/angular-animate/angular-animate.js"></script>
+    <script src="bower_components/angular-touch/angular-touch.js"></script>
+    <script src="bower_components/angular-route/angular-route.js"></script>
+    <script src="bower_components/firebase/firebase.js"></script>
+    <script src="bower_components/firebase-simple-login/firebase-simple-login.js"></script>
+    <script src="bower_components/mockfirebase/dist/mockfirebase.js"></script>
+    <script src="bower_components/angularfire/dist/angularfire.min.js"></script>
+    <script src="bower_components/moment/moment.js"></script>
+    <!-- endbower -->
+    <!-- endbuild -->
+    <script src="bower_components/ngstorage/ngstorage.min.js"></script>
+
+    <script src="bower_components/d3/d3.min.js"></script>
+    <script src="scripts/assets/charts.js"></script>
+    <script src="bower_components/angles/angles.js"></script>
+    <script src="bower_components/moment/min/moment.min.js"></script>
+
+        <!-- build:js({.tmp,app}) scripts/scripts.js -->
+        <script src="scripts/app.js"></script>
+        <script src="scripts/controllers/main.js"></script>
+        <script src="scripts/controllers/latest.js"></script>
+        <script src="scripts/controllers/topPost.js"></script>
+        <script src="scripts/controllers/timeOfDay.js"></script>
+
+        <script src="scripts/services/userStats.js"></script>
+        <script src="scripts/services/getSubs.js"></script>
+        <script src="scripts/services/averageTimeOfDay.js"></script>
+        <script src="scripts/directives/leftNav.js"></script>
+        <script src="scripts/services/chart.js"></script>
+        <script src="scripts/services/lastPostsComments.js"></script>
+        <script src="scripts/services/subsByPeriod.js"></script>
+        <script src="scripts/services/topPostComments.js"></script>
+
+
+        <!-- endbuild -->
+</body>
+</html>

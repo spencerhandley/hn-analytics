@@ -1,0 +1,51 @@
+<div class="col-sm-12">
+  <div class="row">
+    <h1 class="username" ng-if="user === 'pg'">PAUL GRAHAM</h1>
+    <h1 class="username"ng-if="user !== 'pg'">{{user.toUpperCase()}}</h1>
+
+  </div>
+  <div class="row">
+    <p class="center chart-label">Post Frequency by Time of Day</p>
+    <canvas barchart options="options" responsive=true data="chart" width="500" height="300"></canvas>
+
+  </div>
+  <div class="row counts-container">
+    <div class="col-sm-4">
+      <p class="post-count-label">7D</p>
+      <div class="post-count-node">
+        <div class="total-node">
+          <p>{{subsByPeriod.thisWeeksTot}}</p>
+        </div>
+        <div class="change-node" ng-class="subsByPeriod.weeksDiff <0 ? 'down' : subsByPeriod.weeksDiff > 0 ? 'up' : 'same'">
+          <p>
+          {{subsByPeriod.weeksDiff || 0}}%</p>
+
+        </div>
+      </div>
+    </div>
+    <div class="col-sm-4 ">
+      <p class="post-count-label">1M</p>
+      <div class="post-count-node">
+        <div class="total-node ">
+           <p>{{subsByPeriod.thisMonthsTot}}</p>
+        </div>
+        <div class="change-node" ng-class="subsByPeriod.monthsDiff < 0 ? 'down' : subsByPeriod.monthsDiff > 0 ? 'up' : 'same'">
+          <p>{{subsByPeriod.monthsDiff || 0}}%</p>
+
+        </div>
+      </div>
+    </div>
+    <div class="col-sm-4">
+      <p class="post-count-label">1Y</p>
+      <div class="post-count-node">
+        <div class="total-node">
+          <p>{{subsByPeriod.thisYearsTot}}</p>
+        </div>
+        <div class="change-node" ng-class="subsByPeriod.yearsDiff <0 ? 'down' : subsByPeriod.yearsDiff > 0 ? 'up' : 'same'">
+          <p>{{subsByPeriod.yearsDiff || 0}}%</p>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
