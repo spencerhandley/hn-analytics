@@ -25,18 +25,14 @@
     "jshint-stylish": "^0.2.0",
     "load-grunt-tasks": "^0.4.0",
     "time-grunt": "^0.3.1"
-
   },
   "engines": {
     "node": ">=0.10.0"
   },
   "scripts": {
-    "test": "grunt test",
-    "postinstall": "./node_modules/bower/bin/bower install"
+    "test": "grunt test"
   },
   "dependencies": {
-    "express": "~4.9.8",
-    "bower": "0.6.x"
-
+    "express": "~4.9.8"
   }
 }
