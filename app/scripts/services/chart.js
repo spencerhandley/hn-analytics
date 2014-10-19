@@ -1,6 +1,6 @@
 'use strict';
 angular.module('hnlyticsApp')
-.service('chartsService', function(lastPostCommentsService, topPostCommentsService, averageTimeOfDayService){
+.service('chartsService', ['lastPostCommentsService', 'topPostCommentsService', 'averageTimeOfDayService', function(lastPostCommentsService, topPostCommentsService, averageTimeOfDayService){
 	
 	var getAveTimeChart = function(){
 		var promise = averageTimeOfDayService.timesOfTheDay().then(function(timesOfTheDay){
@@ -104,4 +104,4 @@ angular.module('hnlyticsApp')
 		topPostActivity: getTopPostChart
 	}
 
-});
+}]);

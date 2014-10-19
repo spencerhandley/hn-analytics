@@ -8,7 +8,7 @@
  * Controller of the hnlyticsApp
  */
 angular.module('hnlyticsApp')
-  .controller('TimeOfDayCtrl', function ($scope, timeOfDayChart, subsByPeriodService, chartsService, subsByPeriod) {
+  .controller('TimeOfDayCtrl', ['$scope', 'timeOfDayChart', 'subsByPeriodService', 'chartsService', 'subsByPeriod', function ($scope, timeOfDayChart, subsByPeriodService, chartsService, subsByPeriod) {
   	$scope.chart = timeOfDayChart;
   	$scope.subsByPeriod = subsByPeriod;
   	$scope.$on('New User Data', function(event, data){
@@ -20,4 +20,4 @@ angular.module('hnlyticsApp')
 		})
   		console.log('==================DATA', data)
   	})
-  });
+  }]);

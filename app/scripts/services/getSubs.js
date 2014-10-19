@@ -1,6 +1,6 @@
 'use strict';
 angular.module('hnlyticsApp')
-.service('getSubsService', function($firebase, $q, $localStorage, $timeout, $rootScope){ 
+.service('getSubsService', ['$firebase', '$q', '$localStorage', '$timeout', '$rootScope', function($firebase, $q, $localStorage, $timeout, $rootScope){ 
 
 	var submissions = [];
 	var stories = [];
@@ -84,4 +84,4 @@ angular.module('hnlyticsApp')
 	       	return deferred.promise;
 		}
 	}
-});
+}]);

@@ -8,7 +8,7 @@
  * Controller of the hnlyticsApp
  */
 angular.module('hnlyticsApp')
-  .controller('MainCtrl', function ($scope, $rootScope, UserStatsService) {
+  .controller('MainCtrl', ['$scope', '$rootScope', 'UserStatsService', function ($scope, $rootScope, UserStatsService) {
 	$scope.$on("child:changed", function(data){
 		console.log("===============================", data)
 	})
@@ -40,4 +40,4 @@ angular.module('hnlyticsApp')
 		getData()
 		$scope.$broadcast('New User Data', inputUser)
 	}
-});
+}]);

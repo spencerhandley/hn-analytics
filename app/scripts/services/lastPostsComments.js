@@ -1,6 +1,6 @@
 'use strict';
 angular.module('hnlyticsApp')
-.service('lastPostCommentsService', function($firebase, $q, $localStorage, $timeout, $rootScope, $http, getSubsService){
+.service('lastPostCommentsService', ['$firebase', '$q', '$localStorage', '$timeout', '$rootScope', '$http', 'getSubsService', function($firebase, $q, $localStorage, $timeout, $rootScope, $http, getSubsService){
 	var getLastPostComments = function(callback){
 		var promise = getSubsService.subs($rootScope.user).then(function(data){
 			var stories = data[1];
@@ -84,4 +84,4 @@ angular.module('hnlyticsApp')
 	       	return deferred.promise;
 		}
 	}
-});
+}]);

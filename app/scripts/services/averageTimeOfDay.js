@@ -1,6 +1,6 @@
 'use strict';
 angular.module('hnlyticsApp')
-.service('averageTimeOfDayService', function($firebase, $timeout, $http, getSubsService, $q, $rootScope){
+.service('averageTimeOfDayService', ['$firebase', '$timeout', '$http', 'getSubsService', '$q', '$rootScope', function($firebase, $timeout, $http, getSubsService, $q, $rootScope){
 	// POST FREQUENCY BY TIME
 	var getAverageTimes = function(){
 		var promise = getSubsService.subs($rootScope.user).then(function(data){
@@ -42,4 +42,4 @@ angular.module('hnlyticsApp')
 		timesOfTheDay: getAverageTimes
 
 	}
-});
+}]);

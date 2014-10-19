@@ -1,6 +1,6 @@
 'use strict';
 angular.module('hnlyticsApp')
-.service('UserStatsService', function($firebase, $timeout, $http, getSubsService, $q, $rootScope, $localStorage){
+.service('UserStatsService', ['$firebase', '$timeout', '$http', 'getSubsService', '$q', '$rootScope', '$localStorage', function($firebase, $timeout, $http, getSubsService, $q, $rootScope, $localStorage){
 	var getUserData = function(user, cb){
 		var ref = new Firebase('https://hacker-news.firebaseio.com/v0/');
 		var items = ref.child('item');
@@ -72,4 +72,4 @@ angular.module('hnlyticsApp')
 			return deferred.promise;
 		}
 	};
-});
+}]);

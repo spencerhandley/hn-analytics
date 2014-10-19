@@ -8,7 +8,7 @@
  * Controller of the hnlyticsApp
  */
 angular.module('hnlyticsApp')
-  .controller('LatestCtrl', function ($scope, chartsService, activityData) {
+  .controller('LatestCtrl', ['$scope', 'chartsService', 'activityData', function ($scope, chartsService, activityData) {
   	$scope.lastPostChart = activityData
   	$scope.$on('New User Data', function(event, data){
   		subsByPeriodService.getSubsByPeriod().then(function(data){
@@ -19,4 +19,4 @@ angular.module('hnlyticsApp')
 		})
   		console.log('==================DATA', data)
   	})
-  });
+  }]);

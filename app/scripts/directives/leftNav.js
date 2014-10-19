@@ -1,5 +1,5 @@
 angular.module('hnlyticsApp')
-.directive("leftNav", function($rootScope){
+.directive("leftNav", ['$rootScope', function($rootScope){
 	return {
 		restrict: 'EA',
 		scope: {},
@@ -13,4 +13,4 @@ angular.module('hnlyticsApp')
 		}
 
 	}
-})
+}])

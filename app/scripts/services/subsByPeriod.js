@@ -1,6 +1,6 @@
 'use strict';
 angular.module('hnlyticsApp')
-.service('subsByPeriodService', function($firebase, $timeout, $http, getSubsService, $q, $rootScope){
+.service('subsByPeriodService', ['$firebase', '$timeout', '$http', 'getSubsService', '$q', '$rootScope', function($firebase, $timeout, $http, getSubsService, $q, $rootScope){
 	var average;
 	var thisYearsSubs = [];
 	var lastYearsSubs = [];
@@ -107,7 +107,7 @@ angular.module('hnlyticsApp')
 	return {
 		getSubsByPeriod: getSubsByPeriod
 	}
-});
+}]);
 
 
 
