@@ -16,6 +16,8 @@
     "underscore": "~1.7.0",
     "moment": "~2.8.3",
     "angles": "*",
+    "mockfirebase": "*",
+    "firebase-simple-login.js": "*",
     "ngStorage": "*",
     "firebase": "*",
     "jquery": "*",
