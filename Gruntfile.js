@@ -379,7 +379,30 @@ module.exports = function (grunt) {
       }
     }
   });
-
+grunt.registerTask('heroku:development', [
+    'clean:server',
+    'wiredep',
+    'concurrent:server',
+    'autoprefixer',
+    // 'express:dev',
+    'connect:livereload',
+    'watch'
+  ]);
+grunt.registerTask('heroku:production', ['clean:dist',
+    'wiredep',
+    'useminPrepare',
+    'concurrent:dist',
+    'autoprefixer',
+    'concat',
+    'ngmin',
+    'copy:dist',
+    'cdnify',
+    'cssmin',
+    'uglify',
+    'filerev',
+    'usemin',
+    'htmlmin'
+  ]);
 
   grunt.registerTask('serve', 'Compile then start a connect web server', function (target) {
     if (target === 'dist') {
