@@ -17,7 +17,7 @@
     "moment": "~2.8.3",
     "angles": "*",
     "mockfirebase": "*",
-    "firebase-simple-login.js": "*",
+    "firebase-simple-login": "*",
     "ngStorage": "*",
     "firebase": "*",
     "jquery": "*",
