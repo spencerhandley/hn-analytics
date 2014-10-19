@@ -378,7 +378,8 @@ grunt.registerTask('heroku:development', [
     'connect:livereload',
     'watch'
   ]);
-grunt.registerTask('heroku:production', ['clean:dist',
+grunt.registerTask('heroku:production', [
+    'clean:dist',
     'wiredep',
     'useminPrepare',
     'concurrent:dist',
