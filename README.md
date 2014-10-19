@@ -9,4 +9,4 @@ This is a data vizualization application using the Hacker News Firebase API. It 
 1. Launch the app with `grunt serve`
 
 ### Contributing
-Before contributing, take a look at the [contributing readme](CONTRIBUTING.md).
+Before contributing, take a look at the [contributing readme](contributing.md).
