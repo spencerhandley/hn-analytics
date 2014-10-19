@@ -22,18 +22,18 @@ angular
 
   ])
   .constant('_', window._)
-  .config(function ($routeProvider) {
+  .config(['$routeProvider', function ($routeProvider) {
     $routeProvider
       .when('/', {
         templateUrl: 'views/main.html',
         controller: 'TimeOfDayCtrl',
         resolve: {
-          'timeOfDayChart': function(chartsService){
+          'timeOfDayChart': [ 'chartsService', function(chartsService){
             return chartsService.timeOfDay()
-          },
-          'subsByPeriod': function(subsByPeriodService){
+          }],
+          'subsByPeriod': ['subsByPeriodService', function(subsByPeriodService){
             return subsByPeriodService.getSubsByPeriod()
-          }
+          }]
 
         }
       })
@@ -41,18 +41,18 @@ angular
         templateUrl: 'views/latest.html',
         controller: 'LatestCtrl as vm',
         resolve: {
-          activityData: function(chartsService){
+          activityData: ['chartsService', function(chartsService){
             return chartsService.lastPostActivity()
-          }
+          }]
         }
       })
        .when('/toppost', {
         templateUrl: 'views/toppost.html',
         controller: 'TopPostCtrl',
         resolve: {
-          activityData: function(chartsService){
+          activityData: ['chartsService', function(chartsService){
             return chartsService.topPostActivity()
-          }
+          }]
         }
       })
       .when('/global', {
@@ -62,4 +62,4 @@ angular
       .otherwise({
         redirectTo: '/'
       });
-  });
+  }]);

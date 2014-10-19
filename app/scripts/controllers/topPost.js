@@ -8,7 +8,7 @@
  * Controller of the hnlyticsApp
  */
 angular.module('hnlyticsApp')
-  .controller('TopPostCtrl', function ($scope, $firebase, $timeout, $sce, activityData, UserStatsService) {
+  .controller('TopPostCtrl', ['$scope', '$firebase', '$timeout', '$sce', 'activityData', 'UserStatsService', function ($scope, $firebase, $timeout, $sce, activityData, UserStatsService) {
   	$scope.topPostChart = activityData
   	
-  });
+  }]);
