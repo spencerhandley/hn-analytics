@@ -366,25 +366,15 @@ module.exports = function (grunt) {
       ],
       dist: [
         'copy:styles',
-        'imagemin',
         'svgmin'
       ]
     }
-
-    // Test settings
-    // karma: {
-    //   unit: {
-    //     configFile: 'test/karma.conf.js',
-    //     singleRun: true
-    //   }
-    // }
   });
 grunt.registerTask('heroku:development', [
     'clean:server',
     'wiredep',
     'concurrent:server',
     'autoprefixer',
-    // 'express:dev',
     'connect:livereload',
     'watch'
   ]);
