@@ -42,10 +42,10 @@ module.exports = function (grunt) {
           livereload: '<%= connect.options.livereload %>'
         }
       },
-      jsTest: {
-        files: ['test/spec/{,*/}*.js'],
-        tasks: ['newer:jshint:test', 'karma']
-      },
+      // jsTest: {
+      //   files: ['test/spec/{,*/}*.js'],
+      //   tasks: ['newer:jshint:test', 'karma']
+      // },
       styles: {
         files: ['<%= yeoman.app %>/styles/{,*/}*.css'],
         tasks: ['newer:copy:styles', 'autoprefixer']
@@ -369,15 +369,15 @@ module.exports = function (grunt) {
         'imagemin',
         'svgmin'
       ]
-    },
+    }
 
     // Test settings
-    karma: {
-      unit: {
-        configFile: 'test/karma.conf.js',
-        singleRun: true
-      }
-    }
+    // karma: {
+    //   unit: {
+    //     configFile: 'test/karma.conf.js',
+    //     singleRun: true
+    //   }
+    // }
   });
 grunt.registerTask('heroku:development', [
     'clean:server',
