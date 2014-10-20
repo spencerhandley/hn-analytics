@@ -1,16 +1,9 @@
 var request = require('request');
 var Firebase = require('firebase');
-var mongoose = require('mongoose');
 var Promise = require('bluebird');
 var Events = require('minivents');
 var _ = require('underscore')
 
-var User = require('./api/users/user');
-var Story = require('./api/stories/story');
-// var Poll = require('./mongoose/models/poll');
-var Comment = require('./api/comments/comment');
-// var Pollopt = require('./mongoose/models/pollopt');
-// var Job = require('./mongoose/models/job');
 
 exports.getUserInfo = function(req, res, next){
   request('https://hn.algolia.com/api/v1/users/'+ req.params.userId, function(err, response, user){

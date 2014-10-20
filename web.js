@@ -8,9 +8,7 @@
 	 
 	var app = require('./server/server-config.js');
 	app.use(express.static(__dirname + "/dist"));
-	// Setup mongoose
-	var db = process.env.MONGODB || 'mongodb://localhost/hnanalytics'
-	mongoose.connect(db);
+
 
 	console.log('Badass server now listening on port ');
 

@@ -9,10 +9,14 @@
  */
 angular.module('hnlyticsApp')
   .controller('MainCtrl', ['$scope', '$location', '$route', '$routeParams','$rootScope', 'UserStatsService', function ($scope, $location, $route, $routeParams, $rootScope, UserStatsService) {
-	$scope.$on("child:changed", function(data){
+	$scope.$on("route:changed", function(data){
+		console.log("DATA", data)
+		$rootScope.user = data;
+		getData();
+		// $location.path('/'+inputUser)
 		console.log("===============================", data);
 	});
-	$rootScope.user = 'pg';
+	$rootScope.user = 'pg'
 	$scope.current = 1;
 	$scope.setCurrent = function(val){
 		$scope.current = val;

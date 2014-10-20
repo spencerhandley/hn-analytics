@@ -81,7 +81,11 @@ angular.module('hnlyticsApp').controller('MainCtrl', [
   '$rootScope',
   'UserStatsService',
   function ($scope, $location, $route, $routeParams, $rootScope, UserStatsService) {
-    $scope.$on('child:changed', function (data) {
+    $scope.$on('route:changed', function (data) {
+      console.log('DATA', data);
+      $rootScope.user = data;
+      getData();
+      // $location.path('/'+inputUser)
       console.log('===============================', data);
     });
     $rootScope.user = 'pg';
@@ -178,6 +182,7 @@ angular.module('hnlyticsApp').controller('TimeOfDayCtrl', [
   'subsByPeriod',
   function ($scope, timeOfDayChart, $routeParams, $rootScope, subsByPeriodService, chartsService, subsByPeriod) {
     $rootScope.user = $routeParams.userId;
+    $scope.$emit('route:changed', $routeParams.userId);
     $scope.chart = timeOfDayChart.chart;
     // $scope.subsByPeriod = subsByPeriod;
     $scope.$on('New User Data', function (event, data) {

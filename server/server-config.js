@@ -16,10 +16,6 @@
 	app.use(express.static(__dirname + "/dist"));
 
 	// app.use(session());
-	// app.route('/')
-	// 	.get(function(req, res, next){
-	// 		res.send(200)
-	// 	})
 
 	app.route('/api/:userId/user-info')
 		.get(handler.getUserInfo)
