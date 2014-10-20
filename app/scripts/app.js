@@ -24,7 +24,7 @@ angular
   .constant('_', window._)
   .config(['$routeProvider', function ($routeProvider) {
     $routeProvider
-      .when('/', {
+      .when('/:userId', {
         templateUrl: 'views/main.html',
         controller: 'TimeOfDayCtrl',
         resolve: {
@@ -37,16 +37,16 @@ angular
 
         }
       })
-      .when('/latest', {
+      .when('/:userId/latest', {
         templateUrl: 'views/latest.html',
-        controller: 'LatestCtrl as vm',
+        controller: 'LatestCtrl',
         resolve: {
           activityData: ['chartsService', function(chartsService){
             return chartsService.lastPostActivity()
           }]
         }
       })
-       .when('/toppost', {
+       .when('/:userId/toppost', {
         templateUrl: 'views/toppost.html',
         controller: 'TopPostCtrl',
         resolve: {
@@ -55,11 +55,11 @@ angular
           }]
         }
       })
-      .when('/global', {
+      .when('/:userId/wordmap', {
         templateUrl: 'views/global.html',
-        controller: 'AboutCtrl'
+        controller: 'WorldMapCtrl'
       })
       .otherwise({
-        redirectTo: '/'
+        redirectTo: '/pg'
       });
   }]);

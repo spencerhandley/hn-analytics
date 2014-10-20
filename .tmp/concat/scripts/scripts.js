@@ -86,9 +86,11 @@ angular.module('hnlyticsApp').controller('MainCtrl', [
     $scope.setCurrent = function (val) {
       $scope.current = val;
     };
+    $scope.myChartOptions = {};
     function getData() {
       UserStatsService.results($rootScope.user).then(function (data) {
-        $scope.userStats = data.basic;
+        console.log(data);
+        $scope.userStats = data;
         $scope.dgntData = [
           {
             label: 'Comments',
@@ -170,14 +172,14 @@ angular.module('hnlyticsApp').controller('TimeOfDayCtrl', [
   'chartsService',
   'subsByPeriod',
   function ($scope, timeOfDayChart, subsByPeriodService, chartsService, subsByPeriod) {
-    $scope.chart = timeOfDayChart;
-    $scope.subsByPeriod = subsByPeriod;
+    $scope.chart = timeOfDayChart.chart;
+    // $scope.subsByPeriod = subsByPeriod;
     $scope.$on('New User Data', function (event, data) {
-      subsByPeriodService.getSubsByPeriod().then(function (data) {
-        $scope.subsByPeriod = data;
-      });
+      // subsByPeriodService.getSubsByPeriod().then(function(data){
+      // 	$scope.subsByPeriod = data;
+      // });
       chartsService.timeOfDay().then(function (data) {
-        $scope.chart = data;
+        $scope.chart = data.chart;
       });
       console.log('==================DATA', data);
     });
@@ -204,14 +206,15 @@ angular.module('hnlyticsApp').service('UserStatsService', [
           var comments = data.comments;
           var about = data.basic.about;
           var karma = data.basic.karma;
-          var created = new Date(userObj.createdAt * 1000);
+          var submitted = data.comments + data.stories;
+          var created = new Date(data.basic.created_at_i * 1000);
           cb({
             stories: stories,
             comments: comments,
             karma: karma,
             about: about,
-            submitted: userObj.submitted,
-            createdAt: created.getMonth().toString() + '/' + created.getFullYear().toString()
+            submitted: submitted,
+            createdAt: created.getMonth() + '/' + created.getFullYear()
           });
         });
       });

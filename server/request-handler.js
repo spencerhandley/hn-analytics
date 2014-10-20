@@ -14,19 +14,14 @@ var Comment = require('./api/comments/comment');
 
 exports.getUserInfo = function(req, res, next){
   request('https://hn.algolia.com/api/v1/users/'+ req.params.userId, function(err, response, user){
-    request('https://hn.algolia.com/api/v1/search?hitsPerPage=500&tags=comments,author_'+req.params.userId, function(err,response,comments){
-      request('https://hn.algolia.com/api/v1/search?hitsPerPage=500&tags=story,author_'+req.params.userId, function(err,response,stories){
-        var commentArr = JSON.parse(comments);
-        var storiesArr = JSON.parse(stories);
-        var basic = JSON.parse(user)
-        var userObj = {
-          comments: commentArr.length,
-          stories: storiesArr.length,
-          basic: basic
-        };
-        res.send(userObj);
-      });
-    });
+    var basic = JSON.parse(user)
+    var userObj = {
+      comments: basic.comment_count,
+      stories: basic.submission_count,
+      basic: basic
+    };
+    console.log(userObj)
+    res.send(userObj);
   });
 }
 exports.getTopPost = function(req, res, next){
@@ -215,8 +210,16 @@ exports.getHourlyAverages = function(req, res, next){
       for (var i = 0; i < averageTimes.length; i++) {
           timesOfTheDay[averageTimes[i][0]]= averageTimes[i][1];
       };
-      res.send(timesOfTheDay)
-      console.log(timesOfTheDay, "sent Data")
+      var timeArr = []
+      for (var i = 0; i < 24; i++) {
+        if(timesOfTheDay[i]){
+          timeArr.push(timesOfTheDay[i]);
+        }else{
+          timeArr.push(0)
+        }
+      };
+      res.send(timeArr);
+      console.log(timeArr, "sent Data")
   });
 };
 
