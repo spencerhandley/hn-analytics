@@ -13,6 +13,8 @@
 	app.use(bodyParser());
 	// app.use(express.static(__dirname + '/public'));
 	app.use(cookieParser('shhhh, very secret'));
+	app.use(express.static(__dirname + "/dist"));
+
 	// app.use(session());
 	// app.route('/')
 	// 	.get(function(req, res, next){
