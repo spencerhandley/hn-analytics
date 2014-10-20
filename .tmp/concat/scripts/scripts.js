@@ -20,7 +20,7 @@ angular.module('hnlyticsApp', [
 ]).constant('_', window._).config([
   '$routeProvider',
   function ($routeProvider) {
-    $routeProvider.when('/', {
+    $routeProvider.when('/:userId', {
       templateUrl: 'views/main.html',
       controller: 'TimeOfDayCtrl',
       resolve: {
@@ -37,9 +37,9 @@ angular.module('hnlyticsApp', [
           }
         ]
       }
-    }).when('/latest', {
+    }).when('/:userId/latest', {
       templateUrl: 'views/latest.html',
-      controller: 'LatestCtrl as vm',
+      controller: 'LatestCtrl',
       resolve: {
         activityData: [
           'chartsService',
@@ -48,7 +48,7 @@ angular.module('hnlyticsApp', [
           }
         ]
       }
-    }).when('/toppost', {
+    }).when('/:userId/toppost', {
       templateUrl: 'views/toppost.html',
       controller: 'TopPostCtrl',
       resolve: {
@@ -59,10 +59,10 @@ angular.module('hnlyticsApp', [
           }
         ]
       }
-    }).when('/global', {
+    }).when('/:userId/wordmap', {
       templateUrl: 'views/global.html',
-      controller: 'AboutCtrl'
-    }).otherwise({ redirectTo: '/' });
+      controller: 'WorldMapCtrl'
+    }).otherwise({ redirectTo: '/pg' });
   }
 ]);
 'use strict';
@@ -75,9 +75,12 @@ angular.module('hnlyticsApp', [
  */
 angular.module('hnlyticsApp').controller('MainCtrl', [
   '$scope',
+  '$location',
+  '$route',
+  '$routeParams',
   '$rootScope',
   'UserStatsService',
-  function ($scope, $rootScope, UserStatsService) {
+  function ($scope, $location, $route, $routeParams, $rootScope, UserStatsService) {
     $scope.$on('child:changed', function (data) {
       console.log('===============================', data);
     });
@@ -111,7 +114,7 @@ angular.module('hnlyticsApp').controller('MainCtrl', [
     $scope.pullUserData = function (inputUser) {
       $rootScope.user = inputUser;
       getData();
-      $scope.$broadcast('New User Data', inputUser);
+      $location.path('/' + inputUser);
     };
   }
 ]);
@@ -168,10 +171,13 @@ angular.module('hnlyticsApp').controller('TopPostCtrl', [
 angular.module('hnlyticsApp').controller('TimeOfDayCtrl', [
   '$scope',
   'timeOfDayChart',
+  '$routeParams',
+  '$rootScope',
   'subsByPeriodService',
   'chartsService',
   'subsByPeriod',
-  function ($scope, timeOfDayChart, subsByPeriodService, chartsService, subsByPeriod) {
+  function ($scope, timeOfDayChart, $routeParams, $rootScope, subsByPeriodService, chartsService, subsByPeriod) {
+    $rootScope.user = $routeParams.userId;
     $scope.chart = timeOfDayChart.chart;
     // $scope.subsByPeriod = subsByPeriod;
     $scope.$on('New User Data', function (event, data) {

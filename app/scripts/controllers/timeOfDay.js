@@ -8,8 +8,9 @@
  * Controller of the hnlyticsApp
  */
 angular.module('hnlyticsApp')
-  .controller('TimeOfDayCtrl', ['$scope', 'timeOfDayChart', 'subsByPeriodService', 'chartsService', 'subsByPeriod', function ($scope, timeOfDayChart, subsByPeriodService, chartsService, subsByPeriod) {
-  	$scope.chart = timeOfDayChart.chart;
+  .controller('TimeOfDayCtrl', ['$scope', 'timeOfDayChart', '$routeParams', '$rootScope', 'subsByPeriodService', 'chartsService', 'subsByPeriod', function ($scope, timeOfDayChart, $routeParams, $rootScope, subsByPeriodService, chartsService, subsByPeriod) {
+    $rootScope.user = $routeParams.userId
+    $scope.chart = timeOfDayChart.chart;
   	// $scope.subsByPeriod = subsByPeriod;
   	$scope.$on('New User Data', function(event, data){
   		// subsByPeriodService.getSubsByPeriod().then(function(data){
