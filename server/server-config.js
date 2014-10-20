@@ -21,8 +21,10 @@
 
 	app.route('/api/:userId/hourly-averages')
 		.get(handler.getHourlyAverages)
-	app.route('/api/:userId/last-post-comments')
-		.get(handler.getLastPostComments)
+	app.route('/api/:userId/last-post')
+		.get(handler.getLastPost)
+	app.route('/api/:userId/top-post')
+		.get(handler.getTopPost)
 	// app.route('/sync-data')
 	// 	.get(handler.syncData)
 	// app.route('/top-stories')
