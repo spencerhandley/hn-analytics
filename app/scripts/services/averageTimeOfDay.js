@@ -12,6 +12,7 @@ angular.module('hnlyticsApp')
 			  .map(function(sub) {
 			  	var subTime = new Date(sub.time*1000);
 			    return subTime.getHours();
+
 			  })
 			  .reduce(function(last, now) {
 			    var index = last[0].indexOf(now);
