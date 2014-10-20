@@ -4,8 +4,6 @@ var mongoose = require('mongoose');
 var Promise = require('bluebird');
 var Events = require('minivents');
 var _ = require('underscore')
-// var _ = require('underscore')
-// var util = require('../lib/utility');
 
 var User = require('./api/users/user');
 var Story = require('./api/stories/story');
@@ -13,29 +11,23 @@ var Story = require('./api/stories/story');
 var Comment = require('./api/comments/comment');
 // var Pollopt = require('./mongoose/models/pollopt');
 // var Job = require('./mongoose/models/job');
-var ref = new Firebase("https://hacker-news.firebaseio.com/v0/");
-var users = ref.child('user');
-var maxRef = ref.child('maxitem')
 
-// var updateUser = function(username){
-//   users.child(username).once('value', function(user){
-//   })
-// }
-// exports.syncUsers = function(req, res, next){
-
-//   Comment.find({}, function(err, comment){
-//     var users = []
-//     for (var i = 0; i < comment.length; i++) {
-//       users.push(comment[i].by)
-//     };
-//     res.send(_.unique(users))
-//   })
-// }
 exports.getUserInfo = function(req, res, next){
-  request('https://hn.algolia.com/api/v1/users/'+ res.params.userId, function(err, response, body){
-    var user = JSON.parse(body)
-    console.log(user)
-  })
+  request('https://hn.algolia.com/api/v1/users/'+ req.params.userId, function(err, response, user){
+    request('https://hn.algolia.com/api/v1/search?hitsPerPage=500&tags=comments,author_'+req.params.userId, function(err,response,comments){
+      request('https://hn.algolia.com/api/v1/search?hitsPerPage=500&tags=story,author_'+req.params.userId, function(err,response,stories){
+        var commentArr = JSON.parse(comments);
+        var storiesArr = JSON.parse(stories);
+        var basic = JSON.parse(user)
+        var userObj = {
+          comments: commentArr.length,
+          stories: storiesArr.length,
+          basic: basic
+        };
+        res.send(userObj);
+      });
+    });
+  });
 }
 exports.getTopPost = function(req, res, next){
   request('https://hn.algolia.com/api/v1/search?hitsPerPage=500&tags=story,author_'+req.params.userId, function(err,response,stories){
@@ -43,14 +35,13 @@ exports.getTopPost = function(req, res, next){
     var topStory;
     var stories = JSON.parse(stories).hits;
     stories.forEach(function(story){
-      if(story.points> topScore){
+      if(story.points > topScore){
         topScore = story.points + story.num_comments
         topStory = story
       }
     });
     request('https://hn.algolia.com/api/v1/search?hitsPerPage=500&tags=comment,story_'+parseInt(topStory.objectID), function(err, response, storyComments){
       var results = JSON.parse(storyComments).hits;
-      console.log(results)
       var byDay = {};
       for (var i = 0; i < results.length; i++) {
         if(results[i].created_at_i){
@@ -117,6 +108,7 @@ exports.getTopPost = function(req, res, next){
         commentArr: statArr
       };
       res.send(topPostObj);
+      console.log(topPostObj, "Sent DATA")
     }); 
   });
 };
@@ -224,6 +216,7 @@ exports.getHourlyAverages = function(req, res, next){
           timesOfTheDay[averageTimes[i][0]]= averageTimes[i][1];
       };
       res.send(timesOfTheDay)
+      console.log(timesOfTheDay, "sent Data")
   });
 };
 

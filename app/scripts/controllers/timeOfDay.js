@@ -13,11 +13,11 @@ angular.module('hnlyticsApp')
   	$scope.subsByPeriod = subsByPeriod;
   	$scope.$on('New User Data', function(event, data){
   		subsByPeriodService.getSubsByPeriod().then(function(data){
-  			$scope.subsByPeriod = data
-  		})
-		chartsService.timeOfDay().then(function(data){
-			$scope.chart = data
-		})
-  		console.log('==================DATA', data)
-  	})
+  			$scope.subsByPeriod = data;
+  		});
+  		chartsService.timeOfDay().then(function(data){
+  			$scope.chart = data;
+  		});
+  		console.log('==================DATA', data);
+  	});
   }]);

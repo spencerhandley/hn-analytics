@@ -6,9 +6,9 @@
   <div class="row line-graph">
     <p class="center chart-label">Latest Post Statistics</p>
     <div>
-    	<a href="{{lastPost.url}}"><h4>{{userStats.lastPost.title}}</h4></a>
-    	<p>Score: {{userStats.lastPost.score}}</p>
-    	<p>{{userStats.lastPostDate}}</p>
+    	<a href="{{chartInfo.url}}"><h4>{{chartInfo.title}}</h4></a>
+    	<p>Score: {{chartInfo.points}}</p>
+    	<p>{{chartInfo.created_at}}</p>
     </div>
     <canvas linechart options="options" responsive=true data="lastPostChart"  width="500" height="300"></canvas>
   </div>

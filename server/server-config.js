@@ -19,6 +19,8 @@
 	// 		res.send(200)
 	// 	})
 
+	app.route('/api/:userId/user-info')
+		.get(handler.getUserInfo)
 	app.route('/api/:userId/hourly-averages')
 		.get(handler.getHourlyAverages)
 	app.route('/api/:userId/last-post')
