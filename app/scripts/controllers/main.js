@@ -8,12 +8,12 @@
  * Controller of the hnlyticsApp
  */
 angular.module('hnlyticsApp')
-  .controller('MainCtrl', ['$scope', '$location', '$route', '$routeParams','$rootScope', 'UserStatsService', function ($scope, $location, $route, $routeParams, $rootScope, UserStatsService) {
-	$scope.$on("route:changed", function(data){
+  .controller('MainCtrl', ['$scope', '$location', '$modal', '$route', '$routeParams','$rootScope', 'UserStatsService', function ($scope, $location, $modal, $route, $routeParams, $rootScope, UserStatsService) {
+	$scope.$on("route:changed", function(event, data){
 		console.log("DATA", data)
 		$rootScope.user = data;
 		getData();
-		// $location.path('/'+inputUser)
+		$location.path('/'+data)
 		console.log("===============================", data);
 	});
 	$rootScope.user = 'pg'
@@ -24,6 +24,22 @@ angular.module('hnlyticsApp')
 	$scope.myChartOptions = {
        
     };
+	$scope.open = function (size) {
+
+	    var modalInstance = $modal.open({
+	      templateUrl: '/views/forkModal.html',
+	      controller: 'forkModalCtrl',
+	      size: size
+	    });
+
+	    modalInstance.result.then(function (selectedItem) {
+	      $scope.selected = selectedItem;
+	    }, function () {
+	    });
+	};
+	// put something on local storage that says it's been open and only open dialog with it's hasn't been opened before
+		$scope.open();
+
 	function getData(){
 		UserStatsService.results($rootScope.user).then(function(data){
 			console.log(data)
@@ -41,6 +57,7 @@ angular.module('hnlyticsApp')
 			return data;
 		});
 	};
+	
 	getData();
 	$scope.pullUserData = function(inputUser){
 		$rootScope.user = inputUser;
@@ -48,4 +65,15 @@ angular.module('hnlyticsApp')
 		$location.path('/'+inputUser)
 		// $scope.$broadcast('New User Data', inputUser);
 	};
+}])
+.controller('forkModalCtrl', ['$scope', '$modalInstance', function ($scope, $modalInstance) {
+
+  $scope.ok = function () {
+    $modalInstance.close();
+  };
+
+  $scope.cancel = function () {
+    $modalInstance.dismiss('cancel');
+  };
 }]);
+

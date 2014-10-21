@@ -1,6 +1,6 @@
 'use strict';
 angular.module('hnlyticsApp')
-.service('lastPostCommentsService', ['$firebase', '$q', '$localStorage', '$timeout', '$rootScope', '$http', function($firebase, $q, $localStorage, $timeout, $rootScope, $http){
+.service('lastPostCommentsService', ['$firebase', '$q', '$timeout', '$rootScope', '$http', function($firebase, $q, $timeout, $rootScope, $http){
 	var getLastPostComments = function(callback){
 		$http.get('/api/'+$rootScope.user+'/last-post')
 		.success(function(data){

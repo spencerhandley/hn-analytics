@@ -64,28 +64,31 @@ module.exports = function (grunt) {
         ]
       }
     },
-    // express: {
-    //   options: {
-    //     port: 9000
-    //     // Override defaults here
-    //   },
-    //   dev: {
-    //     options: {
-    //       script: './server/server.js'
-    //     }
-    //   },
-    //   prod: {
-    //     options: {
-    //       script: './server/server.js',
-    //       node_env: 'production'
-    //     }
-    //   },
-    //   test: {
-    //     options: {
-    //       script: './server/server.js'
-    //     }
-    //   }
-    // },
+    express: {
+      options: {
+        port: 9000,
+        hostname: 'localhost',
+        livereload: 35729
+      },
+      dev: {
+        options: {
+          script: './web.js',
+          node_env: 'dev'
+
+        }
+      },
+      prod: {
+        options: {
+          script: './web.js',
+          node_env: 'production'
+        }
+      },
+      test: {
+        options: {
+          script: './server/server.js'
+        }
+      }
+    },
     // The actual grunt server settings
     connect: {
       options: {
@@ -407,9 +410,9 @@ grunt.registerTask('heroku:production', [
       'wiredep',
       'concurrent:server',
       'autoprefixer',
-      // 'express:dev',
+      'express:dev',
 
-      'connect:livereload',
+      // 'connect:livereload',
       'watch'
     ]);
   });

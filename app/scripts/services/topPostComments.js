@@ -1,6 +1,6 @@
 'use strict';
 angular.module('hnlyticsApp')
-.service('topPostCommentsService', [ '$firebase', '$q', '$localStorage', '$timeout', '$rootScope', '$http', function($firebase, $q, $localStorage, $timeout, $rootScope, $http){
+.service('topPostCommentsService', [ '$firebase', '$q', '$timeout', '$rootScope', '$http', function($firebase, $q,  $timeout, $rootScope, $http){
 	var getTopPostComments = function(callback){
 		$http.get('/api/'+$rootScope.user+'/top-post')
 		.success(function(data){

@@ -9,6 +9,7 @@
  */
 angular.module('hnlyticsApp')
   .controller('TimeOfDayCtrl', ['$scope', 'timeOfDayChart', '$routeParams', '$rootScope', 'subsByPeriodService', 'chartsService', 'subsByPeriod', function ($scope, timeOfDayChart, $routeParams, $rootScope, subsByPeriodService, chartsService, subsByPeriod) {
+    
     $rootScope.user = $routeParams.userId
     $scope.$emit("route:changed", $routeParams.userId)
     $scope.chart = timeOfDayChart.chart;

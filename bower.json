@@ -22,11 +22,16 @@
     "firebase": "*",
     "jquery": "*",
     "chartjs": "*",
-    "d3": "*"
+    "d3": "*",
+    "angular-bootstrap": "~0.11.2",
+    "angular-ui-router": "~0.2.11"
   },
   "devDependencies": {
     "angular-mocks": "1.2.16",
     "angular-scenario": "1.2.16"
   },
-  "appPath": "app"
+  "appPath": "app",
+  "resolutions": {
+    "angular": "1.2.16"
+  }
 }

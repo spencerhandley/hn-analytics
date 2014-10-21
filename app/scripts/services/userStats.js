@@ -1,6 +1,6 @@
 'use strict';
 angular.module('hnlyticsApp')
-.service('UserStatsService', ['$firebase', '$timeout', '$http', '$q', '$rootScope', '$localStorage', function($firebase, $timeout, $http, $q, $rootScope, $localStorage){
+.service('UserStatsService', ['$firebase', '$timeout', '$http', '$q', '$rootScope', function($firebase, $timeout, $http, $q, $rootScope){
 	var getUserData = function(user, cb){
 		var ref = new Firebase('https://hacker-news.firebaseio.com/v0/');
 		var userRef = ref.child('user').child(user);

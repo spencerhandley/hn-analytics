@@ -7,18 +7,30 @@ var _ = require('underscore')
 
 exports.getUserInfo = function(req, res, next){
   request('https://hn.algolia.com/api/v1/users/'+ req.params.userId, function(err, response, user){
-    var basic = JSON.parse(user)
-    var userObj = {
-      comments: basic.comment_count,
-      stories: basic.submission_count,
-      basic: basic
-    };
-    console.log(userObj)
-    res.send(userObj);
+    if(err) throw err
+    if(response.statusCode !== 404){
+      var basic = JSON.parse(user)
+      var userObj = {
+        comments: basic.comment_count,
+        stories: basic.submission_count,
+        basic: basic
+      };
+      console.log(userObj)
+      res.send(userObj);
+    } else {
+      res.status(404).end()
+      return
+    }
   });
 }
 exports.getTopPost = function(req, res, next){
   request('https://hn.algolia.com/api/v1/search?hitsPerPage=500&tags=story,author_'+req.params.userId, function(err,response,stories){
+    
+    if(err) throw err
+    if(response.statusCode === 404){
+      res.status(404).end()
+      return
+    }
     var topScore = 0;
     var topStory;
     var stories = JSON.parse(stories).hits;
@@ -28,7 +40,16 @@ exports.getTopPost = function(req, res, next){
         topStory = story
       }
     });
-    request('https://hn.algolia.com/api/v1/search?hitsPerPage=500&tags=comment,story_'+parseInt(topStory.objectID), function(err, response, storyComments){
+    if(!topStory){
+      res.status(404).end()
+      return
+    }
+    request('https://hn.algolia.com/api/v1/search?hitsPerPage=500&tags=comment,story_'+parseInt(topStory.objectID), function(err, resStorCom, storyComments){
+      if(err) throw err
+      if(resStorCom.statusCode === 404){
+        res.status(404).end()
+        return
+      }
       var results = JSON.parse(storyComments).hits;
       var byDay = {};
       for (var i = 0; i < results.length; i++) {
@@ -102,8 +123,23 @@ exports.getTopPost = function(req, res, next){
 };
 exports.getLastPost = function(req, res, next){
   request('https://hn.algolia.com/api/v1/search_by_date?hitsPerPage=1&tags=story,author_'+req.params.userId, function(err, response, body){
+    if(err) throw err;
+    console.log(response)
+    if(response.statusCode === 404){
+      res.status(404).end()
+      return
+    }    
     var latestStory = JSON.parse(body).hits[0];
-    request('https://hn.algolia.com/api/v1/search?hitsPerPage=500&tags=comment,story_'+parseInt(latestStory.objectID), function(err, response, storyComments){
+    if(!latestStory){
+      res.status(404).end()
+      return
+    }
+    request('https://hn.algolia.com/api/v1/search?hitsPerPage=500&tags=comment,story_'+parseInt(latestStory.objectID), function(err, resStorCom, storyComments){
+      if(err) throw err;
+      if(resStorCom.statusCode === 404){
+        res.status(404).end()
+        return
+      }      
       var results = JSON.parse(storyComments).hits;
       var byDay = {};
       for (var i = 0; i < results.length; i++) {
@@ -175,6 +211,11 @@ exports.getLastPost = function(req, res, next){
 };
 exports.getHourlyAverages = function(req, res, next){
   request('https://hn.algolia.com/api/v1/search?hitsPerPage=500&tags=(story,comments),author_'+req.params.userId, function(err,response,subs){
+    if(err) throw err;    
+    if(response.statusCode === 404){
+      res.send(404)
+      return 
+    }  
     var submissions = JSON.parse(subs).hits;
     console.log(submissions)
     var timesOfTheDay = {};

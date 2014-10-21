@@ -18,7 +18,7 @@ angular
     'ngSanitize',
     'ngTouch',
     'angles',
-    'ngStorage'
+    'ui.bootstrap'
 
   ])
   .constant('_', window._)

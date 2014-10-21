@@ -7,10 +7,18 @@
 	// sync.syncData()
 	 
 	var app = require('./server/server-config.js');
-	app.use(express.static(__dirname + "/dist"));
+	var assets = "/dist"
+	var bower;
+	if(process.env.NODE_ENV === 'dev'){
+		console.log("true")
+		assets = "/app"
+		bower = '/bower_components'
+		app.use('/bower_components',express.static(__dirname + bower));
+	}
+	app.use('/',express.static(__dirname + assets));
 
 
 	console.log('Badass server now listening on port ');
 
-	app.listen(process.env.PORT || 5000);
+	app.listen(process.env.PORT || 9000);
 })();
