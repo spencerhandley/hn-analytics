@@ -34,11 +34,17 @@ angular
       .state('topStories', {
         url: "/top-stories",
         templateUrl: "views/partials/topStoriesView.html",
+        // controller: "TrendingCtrl"
       })
       .state('topStories.list', {
-        url: "/top-stories/list",
+        url: "/list",
         templateUrl: "views/topList.html",
-        controller: "TopListCtrl"
+        controller: "TopListCtrl",
+        resolve: {
+          'topStories': ['topStoriesService', function(topStoriesService){
+            return topStoriesService.getTopStories()
+          }]
+        }
       })
       .state('userFork', {
         url: "/user",

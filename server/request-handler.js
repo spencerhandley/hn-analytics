@@ -4,6 +4,40 @@ var Promise = require('bluebird');
 var Events = require('minivents');
 var _ = require('underscore')
 
+exports.getTopStories = function(req, res, next){
+  var today = new Date().getTime()
+  var yesterday = Math.floor((today - 86400000)/1000)
+
+  request('https://hn.algolia.com/api/v1/search?tags=story&hitsPerPage=100&numericFilters=created_at_i>'+ yesterday, function(err,response, stories){
+    console.log("hey")
+    var storiesArr = JSON.parse(stories).hits;
+    var parsedArr = []
+    var string = ""
+    for (var i = 0; i < storiesArr.length; i++) {
+      var neededData = {
+        title: storiesArr[i].title,
+        url: storiesArr[i].url,
+        points: storiesArr[i].points,
+        num_comments: storiesArr[i].num_comments,
+        created_at_i: storiesArr[i].created_at_i,
+        author: storiesArr[i].author,
+        storyText: storiesArr[i].storyText
+      }
+      parsedArr.push(neededData)
+      string += storiesArr[i].storyText + storiesArr[i].title
+
+
+    };
+    var highFrequency = countWords(string).slice(0, 15)
+      console.log(countWords(string));
+    var returnObj = {
+      storiesArr : parsedArr,
+      highFrequency : highFrequency,
+      // sentiment : sentiment
+    }
+    res.send(returnObj)
+  })
+}
 
 exports.getUserInfo = function(req, res, next){
   request('https://hn.algolia.com/api/v1/users/'+ req.params.userId, function(err, response, user){
@@ -257,4 +291,41 @@ exports.getHourlyAverages = function(req, res, next){
   });
 };
 
-
+var countWords = function(text){
+ 
+  var sWords = text.toLowerCase().trim().replace(/[,;.]/g,'').split(/[\s\/]+/g).sort();
+  var iWordsCount = sWords.length; // count w/ duplicates
+ 
+  // array of words to ignore
+  var ignore = ['and','the','to','hn:', 'by', 'you', 'your', '–', 'at', 'do','have', 'or','a','of','for','as','i','with','it','is','on','that','this','can','in','be','has','if'];
+  ignore = (function(){
+    var o = {}; // object prop checking > in array checking
+    var iCount = ignore.length;
+    for (var i=0;i<iCount;i++){
+      o[ignore[i]] = true;
+    }
+    return o;
+  }());
+ 
+  var counts = {}; // object for math
+  for (var i=0; i<iWordsCount; i++) {
+    var sWord = sWords[i];
+    if (!ignore[sWord]) {
+      counts[sWord] = counts[sWord] || 0;
+      counts[sWord]++;
+    }
+  }
+ 
+  var arr = []; // an array of objects to return
+  for (sWord in counts) {
+    arr.push({
+      text: sWord,
+      frequency: counts[sWord]
+    });
+  }
+ 
+  // sort array by descending frequency | http://stackoverflow.com/a/8837505
+  return arr.sort(function(a,b){
+    return (a.frequency > b.frequency) ? -1 : ((a.frequency < b.frequency) ? 1 : 0);
+  });
+};

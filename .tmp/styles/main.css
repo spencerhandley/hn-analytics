@@ -27,6 +27,14 @@ body {
   font-weight: 100;
   color: #FF6600;
   margin-bottom: 15px;
+  text-decoration: none;
+}
+.titleLink:hover {
+  text-decoration: none;
+}
+.title:hover {
+  color:#d15300;
+  text-decoration: none;
 }
 .selectTitle {
   margin-left: -20px;

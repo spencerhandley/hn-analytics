@@ -25,6 +25,8 @@
 		.get(handler.getLastPost)
 	app.route('/api/:userId/top-post')
 		.get(handler.getTopPost)
+	app.route('/api/top-stories')
+		.get(handler.getTopStories)		
 	// app.route('/sync-data')
 	// 	.get(handler.syncData)
 	// app.route('/top-stories')
