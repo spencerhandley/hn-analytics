@@ -1,13 +1,14 @@
 'use strict';
 angular.module('hnlyticsApp')
-.service('UserStatsService', ['$firebase', '$timeout', '$http', '$q', '$rootScope', function($firebase, $timeout, $http, $q, $rootScope){
-	var getUserData = function(user, cb){
+.service('UserStatsService', ['$firebase', '$timeout', '$stateParams', '$http', '$q', '$rootScope', function($firebase, $timeout, $stateParams, $http, $q, $rootScope){
+	var getUserData = function( cb){
+		console.log($stateParams.userId)
 		var ref = new Firebase('https://hacker-news.firebaseio.com/v0/');
-		var userRef = ref.child('user').child(user);
+		var userRef = ref.child('user').child($stateParams.userId);
 		var userSync = $firebase(userRef);
 		var userObj = userSync.$asObject();
 		userObj.$loaded(function(){
-			$http.get('/api/'+$rootScope.user+'/user-info')
+			$http.get('/api/'+$stateParams.userId+'/user-info')
 			.success(function(data){
 				console.log(data);
 				var stories = data.stories;
@@ -28,9 +29,9 @@ angular.module('hnlyticsApp')
 	};
 	return {
 
-		results: function(user){
+		results: function(){
 			var deferred = $q.defer(); 
-			getUserData(user, function(data){
+			getUserData(function(data){
 				$timeout(function() {
 					$rootScope.$apply(function(){
 		        		deferred.resolve(data);

@@ -18,48 +18,57 @@ angular
     'ngSanitize',
     'ngTouch',
     'angles',
-    'ui.bootstrap'
+    'ui.bootstrap',
+    'ui.router'
 
   ])
   .constant('_', window._)
-  .config(['$routeProvider', function ($routeProvider) {
-    $routeProvider
-      .when('/:userId', {
-        templateUrl: 'views/main.html',
-        controller: 'TimeOfDayCtrl',
+  .config(['$stateProvider', '$urlRouterProvider', function ($stateProvider, $urlRouterProvider) {
+    $urlRouterProvider.otherwise("/select-fork");
+
+    $stateProvider
+      .state('selectFork', {
+        url: "/select-fork",
+        templateUrl: "views/partials/selectView.html",
+
+      })
+      .state('userFork', {
+        url: "/user",
+        templateUrl: "views/partials/userDataView.html",
+        controller: "MainCtrl" 
+      })
+      .state('userFork.bytime', {
+        url: "/:userId/bytime",
+        templateUrl: "views/main.html",
+        controller: "TimeOfDayCtrl",
         resolve: {
-          'timeOfDayChart': [ 'chartsService', function(chartsService){
-            return chartsService.timeOfDay()
-          }],
-          'subsByPeriod': ['subsByPeriodService', function(subsByPeriodService){
-            return subsByPeriodService.getSubsByPeriod()
+          'timeOfDayChart': [ 'chartsService', '$stateParams',function(chartsService,$stateParams){
+            return chartsService.timeOfDay($stateParams.userId)
+          }]
+        }
+      })
+      .state('userFork.toppost', {
+        url: "/:userId/toppost",
+        templateUrl: "views/toppost.html",
+        controller: "TopPostCtrl",
+        resolve: {
+          activityData: ['chartsService', function(chartsService){
+            return chartsService.topPostActivity()
           }]
 
         }
+
       })
-      .when('/:userId/latest', {
-        templateUrl: 'views/latest.html',
-        controller: 'LatestCtrl',
+      .state('userFork.lastpost', {
+        url: "/:userId/lastpost",
+        templateUrl: "views/latest.html",
+        controller: "LatestCtrl",
         resolve: {
           activityData: ['chartsService', function(chartsService){
             return chartsService.lastPostActivity()
           }]
         }
       })
-       .when('/:userId/toppost', {
-        templateUrl: 'views/toppost.html',
-        controller: 'TopPostCtrl',
-        resolve: {
-          activityData: ['chartsService', function(chartsService){
-            return chartsService.topPostActivity()
-          }]
-        }
-      })
-      .when('/:userId/wordmap', {
-        templateUrl: 'views/global.html',
-        controller: 'WorldMapCtrl'
-      })
-      .otherwise({
-        redirectTo: '/pg'
-      });
+
+    
   }]);

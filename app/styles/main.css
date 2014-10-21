@@ -28,6 +28,67 @@ body {
   color: #FF6600;
   margin-bottom: 15px;
 }
+.selectTitle {
+  margin-left: -20px;
+  display: inline;
+}
+.selectLogo {
+    margin-top: -10px;
+
+  display: inline;
+}
+.selectBG {
+  width: 100%;
+  top: 0px;
+  position: absolute;
+  bottom: 0px;
+  height: 100%;
+  background-color: #FF6600;
+}
+
+.selectBox {
+  width: 400px;
+  height: 300px;
+  margin: 0 auto;
+  margin-top: 150px;
+  padding: 20px;
+  color: #b74900;
+  text-align: center;
+  border-radius: 4px;
+  background-color: #fff9f2;
+  -webkit-box-shadow: -6px 0px 30px 0px rgba(50, 50, 50, 0.32);
+  -moz-box-shadow:    -6px 0px 30px 0px rgba(50, 50, 50, 0.32);
+  box-shadow:         -6px 0px 30px 0px rgba(50, 50, 50, 0.32);
+}
+.selectBox h4 {
+  margin-bottom: 40px;
+  margin-top: 30px;
+
+}
+.selectBox a {
+  text-decoration: none;
+}
+
+.selectionButton {
+  background-color: #ffaa72;
+  width:200px;
+  height: 44px;
+  margin: 0 auto;
+  padding: 10px;
+  border-radius: 3px;
+  margin-bottom: 30px;
+   -webkit-box-shadow: -1px 0px 3px 0px rgba(50, 50, 50, 0.32);
+  -moz-box-shadow:    -1px 0px 3px 0px rgba(50, 50, 50, 0.32);
+  box-shadow:         -1px 0px 3px 0px rgba(50, 50, 50, 0.32);
+}
+.selectionButton:hover {
+  background-color: #FF6600;
+}
+
+.selectionButton p {
+  color: black;
+}
+
 .details-header {
   color: #555;
   font-weight: 200;

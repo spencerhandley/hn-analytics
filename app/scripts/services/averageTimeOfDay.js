@@ -1,9 +1,10 @@
 'use strict';
 angular.module('hnlyticsApp')
-.service('averageTimeOfDayService', ['$firebase', '$timeout', '$http', '$q', '$rootScope', function($firebase, $timeout, $http, $q, $rootScope){
+.service('averageTimeOfDayService', ['$rootScope', '$timeout', '$http', '$q', '$stateParams', function($rootScope, $timeout, $http, $q, $stateParams){
 	// POST FREQUENCY BY TIME
-	var getAverageTimes = function(callback){
-		$http.get('/api/'+$rootScope.user+'/hourly-averages')
+	var getAverageTimes = function(username, callback){
+		console.log($stateParams)
+		$http.get('/api/'+username+'/hourly-averages')
 		.success(function(data){
 			console.log('got the data');
 			console.log(data);
@@ -11,10 +12,9 @@ angular.module('hnlyticsApp')
 		});
 	};
 	return {
-		timesOfTheDay: function(){
+		timesOfTheDay: function(username){
 			var deferred = $q.defer(); 
-			getAverageTimes(function(data){
-				console.log(data);
+			getAverageTimes(username, function(data){
 				$timeout(function(){
 					$rootScope.$apply(function(){
 		        		deferred.resolve(data);
