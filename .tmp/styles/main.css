@@ -37,6 +37,13 @@ body {
 
   display: inline;
 }
+.sectionTitle {
+  margin-top: -45px;
+  font-weight: 100;
+  color: #FF6600;
+  text-align: center;
+  margin-bottom: 15px;
+}
 .selectBG {
   width: 100%;
   top: 0px;

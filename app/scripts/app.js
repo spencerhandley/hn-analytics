@@ -30,7 +30,15 @@ angular
       .state('selectFork', {
         url: "/select-fork",
         templateUrl: "views/partials/selectView.html",
-
+      })
+      .state('topStories', {
+        url: "/top-stories",
+        templateUrl: "views/partials/topStoriesView.html",
+      })
+      .state('topStories.list', {
+        url: "/top-stories/list",
+        templateUrl: "views/topList.html",
+        controller: "TopListCtrl"
       })
       .state('userFork', {
         url: "/user",
@@ -55,9 +63,7 @@ angular
           activityData: ['chartsService', function(chartsService){
             return chartsService.topPostActivity()
           }]
-
         }
-
       })
       .state('userFork.lastpost', {
         url: "/:userId/lastpost",
@@ -69,6 +75,8 @@ angular
           }]
         }
       })
+      
+
 
     
   }]);
