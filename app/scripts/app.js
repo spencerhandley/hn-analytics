@@ -34,7 +34,7 @@ angular
       .state('topStories', {
         url: "/top-stories",
         templateUrl: "views/partials/topStoriesView.html",
-        // controller: "TrendingCtrl"
+        controller: "TrendingCtrl"
       })
       .state('topStories.list', {
         url: "/list",
@@ -43,6 +43,16 @@ angular
         resolve: {
           'topStories': ['topStoriesService', function(topStoriesService){
             return topStoriesService.getTopStories()
+          }]
+        }
+      })
+      .state('topStories.story', {
+        url: "/:storyId",
+        templateUrl: "views/story.html",
+        controller: "PostStatsCtrl",
+        resolve: {
+          activityData: ['chartsService',  '$stateParams', function(chartsService, $stateParams){
+            return chartsService.PostActivity($stateParams.postId)
           }]
         }
       })
@@ -56,7 +66,7 @@ angular
         templateUrl: "views/main.html",
         controller: "TimeOfDayCtrl",
         resolve: {
-          'timeOfDayChart': [ 'chartsService', '$stateParams',function(chartsService,$stateParams){
+          'timeOfDayChart': [ 'chartsService', '$stateParams',function(chartsService, $stateParams){
             return chartsService.timeOfDay($stateParams.userId)
           }]
         }
@@ -66,8 +76,8 @@ angular
         templateUrl: "views/toppost.html",
         controller: "TopPostCtrl",
         resolve: {
-          activityData: ['chartsService', function(chartsService){
-            return chartsService.topPostActivity()
+          activityData: ['chartsService',  '$stateParams', function(chartsService, $stateParams){
+            return chartsService.topPostActivity($stateParams.userId)
           }]
         }
       })
@@ -76,8 +86,8 @@ angular
         templateUrl: "views/latest.html",
         controller: "LatestCtrl",
         resolve: {
-          activityData: ['chartsService', function(chartsService){
-            return chartsService.lastPostActivity()
+          activityData: ['chartsService', '$stateParams', function(chartsService, $stateParams){
+            return chartsService.lastPostActivity($stateParams.userId)
           }]
         }
       })

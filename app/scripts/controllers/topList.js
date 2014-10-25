@@ -1,6 +1,7 @@
 angular.module('hnlyticsApp')
   .controller('TopListCtrl', ['$scope', 'topStories', function ($scope, topStories) {
-      $scope.topStories = topStories.storiesArr
+      $scope.topStories = topStories.storiesArr;
+      $scope.sentiment = topStories.sentiment;
       $scope.dgntData = [ 
         { label: topStories.highFrequency[0].text,
           value: topStories.highFrequency[0].frequency,

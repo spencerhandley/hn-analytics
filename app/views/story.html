@@ -11,9 +11,18 @@
       </div>
       <div class="scorePill sentiment">
         <span class="pilllabel">Comments Sentiment</span>
-        <span class="value">{{sentiment}}</span>
+        <span class="value">Positive</span>
       </div>
       <canvas linechart options="myChartOptions" responsive=true data="lastPostChart"  width="500" height="300"></canvas>
       <p class="center chart-label">Latest Post Comments</p>
+  </div>
+</div>
+<div class="col-sm-2">
+  <div class="sidebar">
+    <h4 class="details-header">SUMMARY</h4> 
+
+    <canvas doughnutchart options="options" class="userdgnt center" data="dgntData" width="160" height="160"></canvas>
+    <p class="center pie-label">WORD FREQUENCY</p>
+    <p class="user-details">CUMULATIVE SENTIMENT</p> <p class="{{sentiment}} sentimentNode">{{sentiment}}</p>
   </div>
 </div>

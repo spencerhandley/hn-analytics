@@ -1,21 +1,22 @@
-<h2 class="sectionTitle">TOP TRENDING STORIES</h2>
 <table class="table table-striped">
-<tr>
-	<th>Post</th>
-	<th>Author</th>
-	<th>Comments</th>
-	<th>Points</th>
-	<th>Trend</th>
-</tr>
+<thead>
+  <tr >
+  	<th>Post</th>
+  	<th>Author</th>
+  	<th>Comments</th>
+  	<th>Points</th>
+  	<th>Sentiment</th>
+  </tr>
+</thead>
 
 
-<tr ng-repeat="story in topStories">
-  <td><a href="{{story.url}}">{{story.title}}</a></td>
-  <td>{{story.author}}</td>
-  <td>{{story.num_comments}}</td>
-  <td>{{story.points}}</td>
-  <td class="success" style="text-align:center;">{{story.trend}}</td>
-</tr>
+  <tr ng-repeat="story in topStories">
+    <td><a href="#/top-stories/{{story.id}}" class="storyLink">{{story.title}}</a></td>
+    <td>{{story.author}}</td>
+    <td>{{story.num_comments}}</td>
+    <td>{{story.points}}</td>
+    <td><div class="{{story.sentiment}} sentimentNode">{{story.sentiment}}</div></td>
+  </tr>
 
 </table>
      <div class="col-sm-2">
@@ -24,11 +25,7 @@
 
           <canvas doughnutchart options="options" class="userdgnt center" data="dgntData" width="160" height="160"></canvas>
           <p class="center pie-label">WORD FREQUENCY</p>
-          <p class="user-details">Member Since: <p class=" detail-p">{{userStats.createdAt}}</p></p>
-          <p class="user-details">Karma: <p class=" detail-p">{{userStats.karma}}</p></p>
-          <p class="user-details">Submissions: <p class=" detail-p">{{userStats.submitted}}</p></p>
-          <p class="user-details">About: <p class=" detail-p">{{userStats.about}}</p></p>
-
+          <p class="user-details">CUMULATIVE SENTIMENT</p> <p class="{{sentiment}} sentimentNode">{{sentiment}}</p>
         </div>
 
       </div>

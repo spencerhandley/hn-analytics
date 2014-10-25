@@ -42,6 +42,7 @@
     "express-partials": "~0.3.0",
     "bluebird": "~2.3.6",
     "minivents": "~1.1.6",
-    "underscore": "~1.7.0"
+    "underscore": "~1.7.0",
+    "Sentimental": "~1.0.1"
   }
 }

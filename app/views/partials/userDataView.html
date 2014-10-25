@@ -1,5 +1,8 @@
 <img src="/images/logo.png" class="pull-left logo">
         <h3 class="title">HN ANALYTICS</h3>
+        <div class="byStoriesBtn">
+          <a href="#/top-stories/list"><p>Top Stories Dash</p></a>
+        </div>
         <form ng-submit="pullUserData(inputUser)">
           <input type="text" ng-model="inputUser" class="un-input" placeholder="Search Username" ></input>
         </form>
@@ -12,7 +15,7 @@
           <li class="row nav-item" ng-class="{ selected: current === 2 }"><a href="#/user/{{user}}/lastpost" ng-click="setCurrent(2)">LATEST POST<span class="glyphicon glyphicon-stats pull-right"></span></a></li>
           <li class="row nav-item" ng-class="{ selected: current === 3 }" ><a href="#/user/{{user}}/toppost" ng-click="setCurrent(3)">TOP POST<span class="glyphicon glyphicon-tasks pull-right"></span></a></li>
           
-          <li class="row nav-item" ng-class="{ selected: current === 5 }" ><a href="#/user/{{user}}/polls" ng-click="setCurrent(5)">WORD FREQUENCY<span class="glyphicon glyphicon-align-left pull-right"></span></a></li>
+          <!-- <li class="row nav-item" ng-class="{ selected: current === 5 }" ><a href="#/user/{{user}}/polls" ng-click="setCurrent(5)">WORD FREQUENCY<span class="glyphicon glyphicon-align-left pull-right"></span></a></li> -->
           <!-- <li class="row nav-item" ng-class="{ selected: current === 6 }"><a href="#/comments" ng-click="setCurrent(6)">COMMENT<span class="glyphicon glyphicon-pencil pull-right"></span></a></li> -->
         </ul>
       </div>

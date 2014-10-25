@@ -1,8 +1,8 @@
 'use strict';
 angular.module('hnlyticsApp')
-.service('lastPostCommentsService', ['$firebase', '$q', '$timeout', '$rootScope', '$http', function($firebase, $q, $timeout, $rootScope, $http){
-	var getLastPostComments = function(username,callback){
-		$http.get('/api/'+username+'/last-post')
+.service('PostStatsService', ['$q', '$timeout', '$rootScope', '$http', function($q, $timeout, $rootScope, $http){
+	var getPostComments = function(postId,callback){
+		$http.get('/api/posts/'+postId)
 		.success(function(data){
 			console.log('got the data');
 			console.log(data);
@@ -10,9 +10,9 @@ angular.module('hnlyticsApp')
 		});
 	};
 	return {
-		lastPostActivity: function(username){
+		PostActivity: function(postId){
 			var deferred = $q.defer(); 
-			getLastPostComments(username, function(data){
+			getPostComments(postId, function(data){
 				console.log(data);
 				$timeout(function(){
 					$rootScope.$apply(function(){

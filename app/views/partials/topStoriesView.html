@@ -1,16 +1,19 @@
 <a href="#/select-fork" class="titleLink"> <img src="/images/logo.png" class="pull-left logo">
-        <h3 class="title">HN ANALYTICS</h3></a>
+        <h3 class="title">TOP TRENDING STORIES</h3></a>
+        <div class="byStoriesBtn">
+          <a href="#/user/pg/bytime"><p>User Dash</p></a>
+        </div>
+        <form ng-submit="userEntered()">
+          <input type="text" ng-model="inputUser" class="un-input" placeholder="Search Username" ></input>
+        </form>
       <!-- </div> -->
-      <div class="left-panel col-sm-2" >
+      <!-- <div class="left-panel col-sm-2" >
         <ul class="nav nav-stacked row " left-nav  >
           <li class="row" style="display:hidden;"></li>
-          <li class="row nav-item " ng-click="setCurrent(1)" ng-class="{ selected: current === 1 }" ><a href="#/user/{{user}}/bytime">TIME OF DAY<span class="glyphicon glyphicon-time pull-right"></span></a></li>
-          <li class="row nav-item" ng-class="{ selected: current === 2 }"><a href="#/user/{{user}}/lastpost" ng-click="setCurrent(2)">LATEST POST<span class="glyphicon glyphicon-stats pull-right"></span></a></li>
+          <li class="row nav-item" ng-class="{ selected: current === 2 }"><a href="#/user/{{user}}/lastpost" ng-click="setCurrent(2)">BROWSE BY USER<span class="glyphicon glyphicon-stats pull-right"></span></a></li>
           <li class="row nav-item" ng-class="{ selected: current === 3 }" ><a href="#/user/{{user}}/toppost" ng-click="setCurrent(3)">TOP POST<span class="glyphicon glyphicon-tasks pull-right"></span></a></li>
-          
-          <li class="row nav-item" ng-class="{ selected: current === 5 }" ><a href="#/user/{{user}}/polls" ng-click="setCurrent(5)">WORD FREQUENCY<span class="glyphicon glyphicon-align-left pull-right"></span></a></li>
-          <!-- <li class="row nav-item" ng-class="{ selected: current === 6 }"><a href="#/comments" ng-click="setCurrent(6)">COMMENT<span class="glyphicon glyphicon-pencil pull-right"></span></a></li> -->
+                    
         </ul>
-      </div>
-      <div ui-view class="col-sm-8"></div>
+      </div> -->
+      <div ui-view class="col-sm-10"></div>
  

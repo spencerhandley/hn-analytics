@@ -29,6 +29,14 @@ body {
   margin-bottom: 15px;
   text-decoration: none;
 }
+.storyLink {
+  color: black;
+  font-weight: 400;
+}
+.storyLink:hover {
+  color: grey;
+  text-decoration: none;
+}
 .titleLink:hover {
   text-decoration: none;
 }
@@ -40,10 +48,118 @@ body {
   margin-left: -20px;
   display: inline;
 }
+.storyTitle {
+  color:#5b5b5b;
+  font-size: 1.2em;
+  font-weight: 100;
+  display: inline;
+  float: left;
+}
+.sentimentNode {
+  padding: 3px;
+  border-radius: 15px;
+  color: white;
+  text-align: center;
+}
+.Neutral {
+  background-color: #a5a5a5;
+}
+.Positive {
+  background-color: #14CC6F;
+}
+.Negative {
+  background-color: #FF270D;
+}
+.storyTitle h4{
+  margin-top: 0px;
+  font-weight: 200;
+}
+.storyTitle:hover {
+  text-decoration: none;
+  color: #FF6600;
+}
+.table > thead > tr > th,
+.table > tbody > tr > th, 
+.table > tfoot > tr > th, 
+.table > thead > tr > td, 
+.table > tbody > tr > td, 
+.table > tfoot > tr > td{
+  border-top: none !important;
+  border-bottom: none !important;
+
+}
+.table > thead > tr > th{
+  font-size: .8em !important;
+  padding-top: 20px;
+  padding-bottom: 20px;
+  color: #a3a3a3;
+}
+.storyDate {
+  margin-bottom: 0px;
+  background-color: #ffdec9;
+  color: white;
+  border-radius: 10px 10px 0px 0px;
+  padding: 5px;
+  width: 100px;
+  text-align: center;
+}
 .selectLogo {
     margin-top: -10px;
 
   display: inline;
+}
+.scorePill {
+  color: white;
+  font-size: 1em;
+  display: inline;
+  float: right;
+  margin-left: 10px;
+}
+.scorePill .pilllabel {
+  background-color: #ea5d00;
+  margin: 0px;
+  padding: 3px;
+  padding-left: 7px;
+  padding-right: 7px;
+  border-radius: 10px 0px 0px 10px;
+}
+.sentiment .pilllabel {
+  background-color: #13BD67;
+}
+.scorePill .value {
+  background-color: #FF6600;
+  margin-left: -4px;
+  padding: 3px;
+  padding-right: 7px;
+  padding-left: 7px;
+  border-radius: 0px 10px 10px 0px;
+}
+.sentiment .value {
+  background-color: #14CC6F;
+}
+.byStoriesBtn {
+  border: 1px #FF6600 solid ;
+  height: 38px;
+  width: 150px;
+  padding: 7px;
+  border-radius: 40px;
+  text-align: center;
+  position: absolute;
+  top: 13px;
+  right: 455px;
+  font-size: 15px;
+  font-weight: 200;
+  z-index: 10;
+}
+.byStoriesBtn a{
+  color:#FF6600;
+}
+.byStoriesBtn a:hover{
+  color:#ff9e5e;
+  text-decoration: none;
+}
+.byStoriesBtn:hover {
+  border: 1px #ff9e5e solid;
 }
 .sectionTitle {
   margin-top: -45px;
@@ -161,6 +277,7 @@ body {
   padding: 10px;
   font-weight: 200;
   border: 2px solid #c9c9c9;
+  z-index: 10;
 }
 .userdgnt {
   margin-top: 10px;

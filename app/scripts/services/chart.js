@@ -26,9 +26,9 @@ angular.module('hnlyticsApp')
 		return promise;
 	};
 
-	var getLatestPostChart = function(){
+	var getLatestPostChart = function(username){
 
-		var promise = lastPostCommentsService.lastPostActivity().then(function(data){
+		var promise = lastPostCommentsService.lastPostActivity(username).then(function(data){
 			var lastPostChart = {
 			    labels : data.labels,
 			    datasets : [
@@ -43,15 +43,40 @@ angular.module('hnlyticsApp')
 			};
 			var returnData = {
 				chart: lastPostChart,
-				chartInfo: data.postObj
+				chartInfo: data.postObj,
+				sentiment: data.sentiment
 			};
 			return returnData;
 		});
 		return promise;
 	};
-	var getTopPostChart = function(){
+	var PostChart = function(postId){
 
-		var promise = topPostCommentsService.topPostActivity().then(function(data){
+		var promise = PostStatsService.PostActivity(postId).then(function(data){
+			var PostChart = {
+			    labels : data.labels,
+			    datasets : [
+			        {
+			            fillColor : 'rgba(151,187,205,0)',
+			            strokeColor : '#FF6600',
+			            pointColor : 'rgba(151,187,205,0)',
+			            pointStrokeColor : '#e67e22',
+			            data : data.commentArr
+			        }
+			    ], 
+			};
+			var returnData = {
+				chart: PostChart,
+				chartInfo: data.postObj,
+				sentiment: data.sentiment
+			};
+			return returnData;
+		});
+		return promise;
+	};
+	var getTopPostChart = function(username){
+
+		var promise = topPostCommentsService.topPostActivity(username).then(function(data){
 			var topPostChart = {
 			    labels : data.labels,
 			    datasets : [
@@ -66,7 +91,8 @@ angular.module('hnlyticsApp')
 			};
 			var returnData = {
 				chart: topPostChart,
-				chartInfo: data.postObj
+				chartInfo: data.postObj,
+				sentiment: data.sentiment
 			};
 			return returnData;
 		});
@@ -76,7 +102,8 @@ angular.module('hnlyticsApp')
 	return {
 		timeOfDay: getAveTimeChart,
 		lastPostActivity: getLatestPostChart,
-		topPostActivity: getTopPostChart
+		topPostActivity: getTopPostChart,
+		postActivity: PostChart
 	};
 
 }]);

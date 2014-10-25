@@ -1,8 +1,8 @@
 'use strict';
 angular.module('hnlyticsApp')
 .service('topPostCommentsService', [ '$firebase', '$q', '$timeout', '$rootScope', '$http', function($firebase, $q,  $timeout, $rootScope, $http){
-	var getTopPostComments = function(callback){
-		$http.get('/api/'+$rootScope.user+'/top-post')
+	var getTopPostComments = function(username, callback){
+		$http.get('/api/'+username+'/top-post')
 		.success(function(data){
 			console.log('got the data');
 			console.log(data);
@@ -10,9 +10,9 @@ angular.module('hnlyticsApp')
 		});
 	};
 	return {
-		topPostActivity: function(){
+		topPostActivity: function(username){
 			var deferred = $q.defer(); 
-			getTopPostComments(function(data){
+			getTopPostComments(username, function(data){
 				$timeout(function(){
 					console.log(data);
 					$rootScope.$apply(function(){
