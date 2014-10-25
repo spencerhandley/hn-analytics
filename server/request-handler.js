@@ -207,7 +207,7 @@ var getArticleComments = function (storyId, cb){
       var commentsObj = {
         labels: trimmed.labels,
         commentArr: trimmed.arr,
-        sentiment: sent
+        sentiment: sent,
       };
       cb(commentsObj);
     });
@@ -217,6 +217,7 @@ exports.getArticleComments = function(req, res, next){
 
   var id = req.params.articleId;
   request('https://hn.algolia.com/api/v1/search?hitsPerPage=500&tags=story,author_'+req.params.userId, function(err,response,stories){
+
 
     });
   getArticleComment(id, function(commentsObj){
@@ -228,6 +229,22 @@ exports.getArticleComments = function(req, res, next){
       res.send(topPostObj);
     }); 
 }
+
+exports.getPost = function(req, res, next){
+  request('https://hn.algolia.com/api/v1/search?hitsPerPage=1&tags=story,story_'+req.params.storyId, function(err, resStorCom, story){
+    var postObj = JSON.parse(story).hits
+    getArticleComments(req.params.storyId, function(commentsObj){
+      var PostObj = {
+        postObj: postObj,
+        labels: commentsObj.labels,
+        sentiment: commentsObj.sentiment,
+        commentArr: commentsObj.commentArr
+      };
+      res.send(PostObj);
+    }); 
+  });
+};
+
 exports.getTopPost = function(req, res, next){
   request('https://hn.algolia.com/api/v1/search?hitsPerPage=500&tags=story,author_'+req.params.userId, function(err,response,stories){
     

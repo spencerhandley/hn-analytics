@@ -1,6 +1,6 @@
 'use strict';
 angular.module('hnlyticsApp')
-.service('chartsService', ['lastPostCommentsService', 'topPostCommentsService', 'averageTimeOfDayService', function(lastPostCommentsService, topPostCommentsService, averageTimeOfDayService){
+.service('chartsService', ['lastPostCommentsService', 'PostStatsService', 'topPostCommentsService', 'averageTimeOfDayService', function(lastPostCommentsService, PostStatsService, topPostCommentsService, averageTimeOfDayService){
 	
 	var getAveTimeChart = function(username){
 		console.log(username)
@@ -51,8 +51,9 @@ angular.module('hnlyticsApp')
 		return promise;
 	};
 	var PostChart = function(postId){
-
+		console.log(postId)
 		var promise = PostStatsService.PostActivity(postId).then(function(data){
+			console.log(data)
 			var PostChart = {
 			    labels : data.labels,
 			    datasets : [
@@ -67,7 +68,7 @@ angular.module('hnlyticsApp')
 			};
 			var returnData = {
 				chart: PostChart,
-				chartInfo: data.postObj,
+				chartInfo: data.postObj[0],
 				sentiment: data.sentiment
 			};
 			return returnData;

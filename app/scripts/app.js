@@ -52,7 +52,8 @@ angular
         controller: "PostStatsCtrl",
         resolve: {
           activityData: ['chartsService',  '$stateParams', function(chartsService, $stateParams){
-            return chartsService.PostActivity($stateParams.postId)
+            console.log("YOOO")
+            return chartsService.postActivity($stateParams.storyId)
           }]
         }
       })

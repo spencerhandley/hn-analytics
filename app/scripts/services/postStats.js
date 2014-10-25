@@ -1,7 +1,8 @@
 'use strict';
 angular.module('hnlyticsApp')
 .service('PostStatsService', ['$q', '$timeout', '$rootScope', '$http', function($q, $timeout, $rootScope, $http){
-	var getPostComments = function(postId,callback){
+	var getPostComments = function(postId, callback){
+		console.log(postId)
 		$http.get('/api/posts/'+postId)
 		.success(function(data){
 			console.log('got the data');

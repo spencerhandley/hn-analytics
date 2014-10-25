@@ -27,6 +27,8 @@
 		.get(handler.getTopPost)
 	app.route('/api/top-stories')
 		.get(handler.getTopStories)
+	app.route('/api/posts/:storyId')
+		.get(handler.getPost)
 	
 
 	module.exports = app;
