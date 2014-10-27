@@ -20,6 +20,7 @@ angular
     'angles',
     'ui.bootstrap',
     'ui.router'
+    
 
   ])
   .constant('_', window._)
