@@ -31,7 +31,6 @@
     "node": ">=0.10.0"
   },
   "scripts": {
-    "postinstall": "echo done",
     "test": "grunt test"
   },
   "dependencies": {
