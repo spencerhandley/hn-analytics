@@ -1,6 +1,6 @@
 /* Space out content a bit */
 body {
-  padding-top: 20px;
+  padding-top: 0px;
   padding-bottom: 20px;
   padding-right: 0px;
 }
@@ -26,6 +26,13 @@ body {
   margin-top: 0px;
   font-weight: 100;
   color: white;
+  margin-bottom: 15px;
+}
+.title-userview {
+  padding-left: 15px;
+  margin-top: 15px;
+  font-weight: 100;
+  color: #FF6600;
   margin-bottom: 15px;
   text-decoration: none;
 }
@@ -168,9 +175,8 @@ body {
 .topbar {
   background-color: #fff;
   width: 100%;
-  height: 90px;
-  padding: 30px;
-  margin-top: -47px;
+  height: 63px;
+  padding: 0px;
   position: fixed;
   border-bottom: 1px solid rgba(0,0,0,.05)
 }
@@ -197,10 +203,34 @@ body {
   font-weight: 200;
   z-index: 10;
 }
+.byStoriesBtn-stories {
+  border: 1px #FF6600 solid ;
+  height: 38px;
+  width: 150px;
+  padding: 7px;
+  border-radius: 40px;
+  text-align: center;
+  position: absolute;
+  top: 11px;
+  min-right: 220px;
+  right: 230px;
+  font-size: 15px;
+  font-weight: 200;
+  z-index: 10;
+}
+.byStoriesBtn-stories a {
+  color: #FF6600
+}
+.byStoriesBtn-stories a:hover {
+  color: #ff9e5e;
+  text-decoration:none;
+}
+
 .backBtn {
-  left:Calc(16.6% + 20px);
-  z-index: 900;
+  left:18%;
+  z-index: 50;
   width: 100px;
+  top:20px;
   position: fixed;
   font-size: 15px;
   font-weight: 200;
@@ -316,7 +346,7 @@ body {
 }
 .username {
   padding-left: 10px;
-  margin-top: -5px;
+  margin-top: 0px;
   font-weight: 100;
 }
 .user-details {
@@ -358,10 +388,25 @@ body {
 .line-graph {
   margin-left: 0px;
 }
+
 .un-input {
   position: absolute;
   top: 11px;
   right: Calc(16.6% + 15px);
+  border-radius: 2px;
+  height: 38px;
+  width: 200px;
+  font-size: 15px;
+  color: #a5a5a5;
+  padding: 10px;
+  font-weight: 200;
+  border: 2px solid #c9c9c9;
+  z-index: 10;
+}
+.un-input-stories {
+  position: absolute;
+  top: 11px;
+  right: 10px;
   border-radius: 2px;
   height: 38px;
   width: 200px;
