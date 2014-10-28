@@ -1,6 +1,11 @@
 <div class="col-sm-2">
   <div class="sidebar">
-    <h4 class="details-header">SUMMARY</h4> 
+<div class="logo-details-header">
+    
+    <a href="#/select-fork" style="z-index: 900;"> <img src="/images/logo.png" class="pull-left logo onBlackLogo">
+    <h3 class="title">HN ANALYTICS</h3>
+  </a>
+  </div>
 <!--     <canvas doughnutchart options="options" class="userdgnt center" data="dgntData" width="160" height="160"></canvas> -->
     <p class="center sidebar-label">TITLE</p>
      <a href="{{chartInfo.url}}" class="summary-detail"><h4>{{chartInfo.title}}</h4></a>
@@ -14,14 +19,16 @@
   </div>
 </div>
 <div class="col-sm-10">
+
   <div class="row line-graph storyLine">
     <div>
-<!-- <p class="storyDate">{{chartInfo.created_at}}</p> -->
-      <a href="{{chartInfo.url}}" class="storyTitle"><h4>{{chartInfo.author.toUpperCase()}} - {{chartInfo.title}}</h4></a>
-      <div class="backBtn">
+    <div class="backBtn">
         <span class="glyphicon glyphicon-chevron-left"></span>
         <a href="#/top-stories/list"><p>Back</p></a>
       </div>
+<!-- <p class="storyDate">{{chartInfo.created_at}}</p> -->
+      <a href="{{chartInfo.url}}" class="storyTitle"><h4>{{chartInfo.author.toUpperCase()}} - {{chartInfo.title}}</h4></a>
+      
       <canvas linechart options="myChartOptions" responsive=true data="PostChart"  width="500" height="300"></canvas>
       <p class="center chart-label">Latest Post Comments by Time</p>
   </div>
