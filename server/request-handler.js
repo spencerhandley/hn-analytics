@@ -127,7 +127,9 @@ var reduceDataPts = function (array, labels){
       if(zeroCount >= 5){
         trimmedArr = trimmedArr.slice(0, zeroStart)
         trimmedLabels = trimmedLabels.slice(0, zeroStart);
-
+        console.log(trimmedLabels)
+        return {arr: trimmedArr, labels: trimmedLabels}
+      } else if(i === trimmedArr.length - 1){
         return {arr: trimmedArr, labels: trimmedLabels}
       }
     }
