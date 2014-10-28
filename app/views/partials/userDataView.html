@@ -1,35 +1,35 @@
 <img src="/images/logo.png" class="pull-left logo">
-        <h3 class="title-userview">HN ANALYTICS</h3>
-        <div class="byStoriesBtn">
-          <a href="#/top-stories/list"><p>Top Stories Dash</p></a>
-        </div>
-        <form ng-submit="pullUserData(inputUser)">
-          <input type="text" ng-model="inputUser" class="un-input" placeholder="Search Username" ></input>
-        </form>
-      <!-- </div> -->
+    <h3 class="title-userview">HN ANALYTICS</h3>
+    <div class="byStoriesBtn">
+      <a href="#/top-stories/list"><p>Top Stories Dash</p></a>
+    </div>
+    <form ng-submit="pullUserData(inputUser)">
+      <input type="text" ng-model="inputUser" class="un-input" placeholder="Search Username" ></input>
+    </form>
+  <!-- </div> -->
 
-      <div class="left-panel col-sm-2" >
-        <ul class="nav nav-stacked row " left-nav  >
-          <li class="row" style="display:hidden;"></li>
-          <li class="row nav-item " ng-click="setCurrent(1)" ng-class="{ selected: current === 1 }" ><a href="#/user/{{user}}/bytime">TIME OF DAY<span class="glyphicon glyphicon-time pull-right"></span></a></li>
-          <li class="row nav-item" ng-class="{ selected: current === 2 }"><a href="#/user/{{user}}/lastpost" ng-click="setCurrent(2)">LATEST POST<span class="glyphicon glyphicon-stats pull-right"></span></a></li>
-          <li class="row nav-item" ng-class="{ selected: current === 3 }" ><a href="#/user/{{user}}/toppost" ng-click="setCurrent(3)">TOP POST<span class="glyphicon glyphicon-tasks pull-right"></span></a></li>
-          
-          <!-- <li class="row nav-item" ng-class="{ selected: current === 5 }" ><a href="#/user/{{user}}/polls" ng-click="setCurrent(5)">WORD FREQUENCY<span class="glyphicon glyphicon-align-left pull-right"></span></a></li> -->
-          <!-- <li class="row nav-item" ng-class="{ selected: current === 6 }"><a href="#/comments" ng-click="setCurrent(6)">COMMENT<span class="glyphicon glyphicon-pencil pull-right"></span></a></li> -->
-        </ul>
-      </div>
-      <div ui-view class="col-sm-8"></div>
-      <div class="col-sm-2">
-        <div class="userSidebar">
-          <h4 class="details-header">{{user.toUpperCase()}}'S DETAILS</h4> 
+  <div class="left-panel col-sm-2" >
+    <ul class="nav nav-stacked row " left-nav  >
+      <li class="row" style="display:hidden;"></li>
+      <li class="row nav-item " ng-click="setCurrent(1)" ng-class="{ selected: current === 1 }" ><a href="#/user/{{user}}/bytime">TIME OF DAY<span class="glyphicon glyphicon-time pull-right"></span></a></li>
+      <li class="row nav-item" ng-class="{ selected: current === 2 }"><a href="#/user/{{user}}/lastpost" ng-click="setCurrent(2)">LATEST POST<span class="glyphicon glyphicon-stats pull-right"></span></a></li>
+      <li class="row nav-item" ng-class="{ selected: current === 3 }" ><a href="#/user/{{user}}/toppost" ng-click="setCurrent(3)">TOP POST<span class="glyphicon glyphicon-tasks pull-right"></span></a></li>
+      
+      <!-- <li class="row nav-item" ng-class="{ selected: current === 5 }" ><a href="#/user/{{user}}/polls" ng-click="setCurrent(5)">WORD FREQUENCY<span class="glyphicon glyphicon-align-left pull-right"></span></a></li> -->
+      <!-- <li class="row nav-item" ng-class="{ selected: current === 6 }"><a href="#/comments" ng-click="setCurrent(6)">COMMENT<span class="glyphicon glyphicon-pencil pull-right"></span></a></li> -->
+    </ul>
+  </div>
+  <div ui-view class="col-sm-8"></div>
+  <div class="col-sm-2">
+    <div class="userSidebar">
+      <h4 class="details-header">{{user.toUpperCase()}}'S DETAILS</h4> 
 
-          <canvas doughnutchart options="options" responsive=true class="userdgnt" data="dgntData"></canvas>
-          <p class="center pie-label">Post Types</p>
-          <p class="user-details pilllabel">MEMBER SINCE: <p class=" detail-p">{{userStats.createdAt}}</p></p>
-          <p class="user-details pilllabel">KARMA: <p class=" detail-p">{{userStats.karma}}</p></p>
-          <p class="user-details">SUBMISSIONS: <p class=" detail-p">{{userStats.submitted}}</p></p>
-          <p class="user-details">ABOUT: <p class=" detail-p">{{userStats.about}}</p></p>
+      <canvas doughnutchart options="options" responsive=true class="userdgnt" data="dgntData"></canvas>
+      <p class="center pie-label">Post Types</p>
+      <p class="user-details pilllabel">MEMBER SINCE: <p class=" detail-p">{{userStats.createdAt}}</p></p>
+      <p class="user-details pilllabel">KARMA: <p class=" detail-p">{{userStats.karma}}</p></p>
+      <p class="user-details">SUBMISSIONS: <p class=" detail-p">{{userStats.submitted}}</p></p>
+      <p class="user-details">ABOUT: <p class=" detail-p">{{userStats.about}}</p></p>
 
-        </div>
-      </div>
+    </div>
+  </div>

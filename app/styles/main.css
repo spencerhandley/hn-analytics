@@ -4,6 +4,7 @@ body {
   padding-bottom: 20px;
   padding-right: 0px;
 }
+
 .logo {
   width: 25px;
   margin-left: 15px;
@@ -411,6 +412,16 @@ body {
   border: 2px solid #c9c9c9;
   z-index: 0;
 }
+
+.name-tag  {
+  width: 150px;
+  height: 50px;
+  background-color: #FF6600;
+  color: black;
+  position: fixed;
+  bottom: 0px;
+  right: 0px;
+}
 .un-input-stories {
   position: absolute;
   top: 11px;
@@ -582,3 +593,4 @@ body {
     border-bottom: 0;
   }
 }
+
