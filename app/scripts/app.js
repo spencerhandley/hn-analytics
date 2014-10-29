@@ -25,7 +25,7 @@ angular
   ])
   .constant('_', window._)
   .config(['$stateProvider', '$urlRouterProvider', function ($stateProvider, $urlRouterProvider) {
-    $urlRouterProvider.otherwise("/top-stories/list");
+    $urlRouterProvider.otherwise("/user/pg/bytime");
 
     $stateProvider
       .state('selectFork', {

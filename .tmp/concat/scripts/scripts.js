@@ -22,7 +22,7 @@ angular.module('hnlyticsApp', [
   '$stateProvider',
   '$urlRouterProvider',
   function ($stateProvider, $urlRouterProvider) {
-    $urlRouterProvider.otherwise('/top-stories/list');
+    $urlRouterProvider.otherwise('/user/pg/bytime');
     $stateProvider.state('selectFork', {
       url: '/select-fork',
       templateUrl: 'views/partials/selectView.html'
