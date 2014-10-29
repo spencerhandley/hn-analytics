@@ -22,7 +22,7 @@ angular.module('hnlyticsApp', [
   '$stateProvider',
   '$urlRouterProvider',
   function ($stateProvider, $urlRouterProvider) {
-    $urlRouterProvider.otherwise('/select-fork');
+    $urlRouterProvider.otherwise('/top-stories/list');
     $stateProvider.state('selectFork', {
       url: '/select-fork',
       templateUrl: 'views/partials/selectView.html'
@@ -112,11 +112,12 @@ angular.module('hnlyticsApp', [
  */
 angular.module('hnlyticsApp').controller('MainCtrl', [
   '$scope',
+  '$sce',
   '$location',
   '$stateParams',
   '$rootScope',
   'UserStatsService',
-  function ($scope, $location, $stateParams, $rootScope, UserStatsService) {
+  function ($scope, $sce, $location, $stateParams, $rootScope, UserStatsService) {
     $rootScope.user = $stateParams.userId;
     $scope.current = 1;
     $scope.setCurrent = function (val) {
@@ -336,12 +337,13 @@ angular.module('hnlyticsApp').controller('PostStatsCtrl', [
 'use strict';
 angular.module('hnlyticsApp').service('UserStatsService', [
   '$firebase',
+  '$sce',
   '$timeout',
   '$stateParams',
   '$http',
   '$q',
   '$rootScope',
-  function ($firebase, $timeout, $stateParams, $http, $q, $rootScope) {
+  function ($firebase, $sce, $timeout, $stateParams, $http, $q, $rootScope) {
     var getUserData = function (cb) {
       console.log($stateParams.userId);
       var ref = new Firebase('https://hacker-news.firebaseio.com/v0/');
@@ -353,7 +355,7 @@ angular.module('hnlyticsApp').service('UserStatsService', [
           console.log(data);
           var stories = data.stories;
           var comments = data.comments;
-          var about = data.basic.about;
+          var about = $sce.trustAsHtml(data.basic.about);
           var karma = data.basic.karma;
           var submitted = data.comments + data.stories;
           var created = new Date(data.basic.created_at_i * 1000);
