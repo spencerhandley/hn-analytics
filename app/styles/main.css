@@ -420,11 +420,12 @@ body {
 }
 
 .name-tag  {
-  width: 180px;
+  width: 220px;
   height: 50px;
   font-size: .8em;
-  background-color: #ff6600;
-  color: #ffe9db;
+  text-align: center;
+  background-color: rgba(0,0,0, 0.3);
+  color: rgba(255,255,255, .2);
   padding: 15px;
   position: fixed;
   bottom: 0px;
@@ -432,7 +433,7 @@ body {
   left: 0px;
 }
 .name-tag:hover {
-  color: white;
+  color: rgba(255,255,255, .4);
   text-decoration: none;
 }
 .un-input-stories {
