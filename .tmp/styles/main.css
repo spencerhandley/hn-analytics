@@ -228,7 +228,7 @@ body {
 }
 
 .backBtn {
-  left:18%;
+  left:235px;
   z-index: 50;
   width: 100px;
   top:20px;
@@ -368,17 +368,23 @@ body {
   bottom: 0;
   width: 16.6%;
   min-width: 220px;
+  max-width: 220px;
   right: 0px;
   position: fixed;
-  overflow: scroll;
+  overflow-y: scroll;
+  overflow-x: hidden;
   box-shadow:         -6px 0px 30px 0px rgba(50, 50, 50, 0.32);
+}
+.rightPanel {
+  min-width: 800px;
+  margin-left: 220px;
 }
 .sidebar {
   background: #282C2F;
   padding: 25px;
   top: 0;
   bottom: 0;
-  width: 16.6%;
+  width: 220px;
   min-width: 220px;
   left: 0px;
   z-index: 100;
@@ -406,13 +412,20 @@ body {
 }
 
 .name-tag  {
-  width: 150px;
+  width: 180px;
   height: 50px;
-  background-color: #FF6600;
-  color: black;
+  font-size: .8em;
+  background-color: #ff6600;
+  color: #ffe9db;
+  padding: 15px;
   position: fixed;
   bottom: 0px;
-  right: 0px;
+  z-index: 999;
+  left: 0px;
+}
+.name-tag:hover {
+  color: white;
+  text-decoration: none;
 }
 .un-input-stories {
   position: absolute;
@@ -438,6 +451,10 @@ body {
   text-align: center;
 }
 
+a.summary-detail:hover {
+  text-decoration: none;
+  color: #bfbfbf;
+}
 .center {
  text-align: center;
 }

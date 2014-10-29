@@ -8,7 +8,7 @@
  * Controller of the hnlyticsApp
  */
 angular.module('hnlyticsApp')
-  .controller('MainCtrl', ['$scope', '$location', '$stateParams', '$rootScope', 'UserStatsService', function ($scope, $location, $stateParams, $rootScope, UserStatsService) {
+  .controller('MainCtrl', ['$scope', '$sce', '$location', '$stateParams', '$rootScope', 'UserStatsService', function ($scope,$sce, $location, $stateParams, $rootScope, UserStatsService) {
 	$rootScope.user = $stateParams.userId
 	$scope.current = 1;
 	$scope.setCurrent = function(val){

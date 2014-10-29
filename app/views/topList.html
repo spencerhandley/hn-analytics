@@ -12,7 +12,7 @@
   </div>
 
 </div>
-<div class="col-sm-10">
+<div class="col-sm-10 rightPanel">
   <table class=" table table-striped ">
     <thead>
       <tr >
@@ -25,7 +25,7 @@
     </thead>
     <tr ng-repeat="story in topStories">
       <td><a href="#/top-stories/{{story.id}}" class="storyLink">{{story.title}}</a></td>
-      <td>{{story.author}}</td>
+      <td><a href="#/user/{{story.author}}/bytime" class="storyLink">{{story.author}}</a></td>
       <td>{{story.num_comments}}</td>
       <td>{{story.points}}</td>
       <td><div class="{{story.sentiment}} sentimentNode">{{story.sentiment}}</div></td>
